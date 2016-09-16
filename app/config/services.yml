@@ -1,0 +1,188 @@
+parameters:
+    app_bundle.facebookUrl: "https://graph.facebook.com/me"
+    app_bundle.validate_user_token_input:
+        input_token: "your_input_token"
+        access_token: "your_access_token"
+    app_bundle.packageName: FacebookGraphAPI
+    app_bundle.metadata:
+        package: "%app_bundle.packageName%"
+        tagline: Facebook Graph API Wrapper
+        description: This is the main package to interact with Facebook users.
+        image: https://www.twilio.com/marketing/bundles/marketing/img/favicons/favicon.ico
+        repo: https://github.com/RapidSoftwareSolutions/Marketplace-FacebookGraphAPI-Package
+        accounts:
+          domain: facebook.com
+          credentials:
+            - accountSid
+            - accountToken
+        blocks:
+        -
+          name: makeCall
+          args:
+            -
+              name: accountSid
+              type: Credentials
+              info: "A 34 character string that uniquely identifies this account."
+            -
+              name: accountToken
+              type: Credentials
+              info: "The authorization token for this account."
+            -
+              name: from
+              type: String
+              info: "The phone number or client identifier to use as the caller id. If using a phone number, it must be a Twilio number or a Verified outgoing caller id for your account."
+            -
+              name: to
+              type: String
+              info: "The phone number, SIP address or client identifier to call."
+            -
+              name: url
+              type: String
+              info: "The fully qualified URL that should be consulted when the call connects. Just like when you set a URL on a phone number for handling inbound calls. See the Url Parameter section below for more details."
+            -
+              name: applicationSid
+              type: String
+              info: "The 34 character sid of the application Twilio should use to handle this phone call. If this parameter is present, Twilio will ignore all of the voice URLs passed and use the URLs set on the application."
+            -
+              name: method
+              type: String
+              info: "Optional: The HTTP method Twilio should use when making its request to the above Url parameter's value. Defaults to POST. If an ApplicationSid parameter is present, this parameter is ignored."
+            -
+              name: fallbackUrl
+              type: String
+              info: "Optional: A URL that Twilio will request if an error occurs requesting or executing the TwiML at Url. If an ApplicationSid parameter is present, this parameter is ignored."
+            -
+              name: fallbackMethod
+              type: String
+              info: "Optional: The HTTP method that Twilio should use to request the FallbackUrl. Must be either GET or POST. Defaults to POST. If an ApplicationSid parameter is present, this parameter is ignored."
+            -
+              name: statusCallback
+              type: String
+              info: "Optional: A URL that Twilio will send asynchronous webhook requests to on every call event specified in the StatusCallbackEvent parameter. If no event is present, Twilio will send completed by default. If an ApplicationSid parameter is present, this parameter is ignored. URLs must contain a valid hostname."
+            -
+              name: statusCallbackMethod
+              type: String
+              info: "Optional: The HTTP method Twilio should use when requesting the above URL. Defaults to POST. If an ApplicationSid parameter is present, this parameter is ignored."
+            -
+              name: statusCallbackEvent
+              type: String
+              info: "Optional: The call progress events that Twilio will send webhooks on. Available values are initiated, ringing, answered, and completed."
+            -
+              name: sendDigits
+              type: String
+              info: "Optional: A string of keys to dial after connecting to the number, maximum of 32 digits."
+            -
+              name: timeout
+              type: String
+              info: "Optional: The integer number of seconds that Twilio should allow the phone to ring before assuming there is no answer."
+            -
+              name: record
+              type: String
+              info: "Optional: Set this parameter to 'true' to record the entirety of a phone call."
+            -
+              name: recordingChannels
+              type: String
+              info: "Optional: Mono or dual. Set this parameter to specify the number of channels in the final recording. Defaults to 'mono'."
+            -
+              name: recordingStatusCallback
+              type: String
+              info: "Optional: The recordingStatusCallback attribute takes an absolute URL as an argument."
+            -
+              name: recordingStatusCallbackMethod
+              type: String
+              info: "Optional: The HTTP method Twilio should use when requesting the above URL. Defaults to POST"
+        -
+          name: sendSms
+          args:
+            -
+              name: accountSid
+              type: Credentials
+              info: "A 34 character string that uniquely identifies this account."
+            -
+              name: accountToken
+              type: Credentials
+              info: "The authorization token for this account."
+            -
+              name: from
+              type: String
+              info: "A Twilio phone number (in E.164 format) or alphanumeric sender ID enabled for the type of message you wish to send. Phone numbers or short codes purchased from Twilio work here. You cannot (for example) spoof messages from your own cell phone number."
+            -
+              name: messagingServiceSid
+              type: String
+              info: "The 34 character unique id of the Messaging Service you want to associate with this Message. Set this parameter to use the Messaging Service Settings and Copilot Features you have configured. When only this parameter is set, Twilio will use your enabled Copilot Features to select the From phone number for delivery."
+            -
+              name: to
+              type: String
+              info: "The destination phone number. Format with a '+' and country code e.g., +16175551212 (E.164 format)."
+            -
+              name: body
+              type: String
+              info: "The text of the message you want to send, limited to 1600 characters."
+            -
+              name: statusCallback
+              type: String
+              info: "Optional: A URL that Twilio will POST to each time your message status changes to one of the following: queued, failed, sent, delivered, or undelivered."
+            -
+              name: applicationSid
+              type: String
+              info: "Optional: Twilio will POST MessageSid as well as MessageStatus=sent or MessageStatus=failed to the URL in the MessageStatusCallback property of this Application."
+            -
+              name: maxPrice
+              type: String
+              info: "Optional: The total maximum price in US dollars acceptable for the message to be delivered."
+            -
+              name: provideFeedback
+              type: String
+              info: "Optional: Set this value to true if you are sending messages that have a trackable user action and you intend to confirm delivery of the message using the Message Feedback API. This parameter is set to false by default."
+        -
+          name: sendMms
+          args:
+            -
+              name: accountSid
+              type: Credentials
+              info: "A 34 character string that uniquely identifies this account."
+            -
+              name: accountToken
+              type: Credentials
+              info: "The authorization token for this account."
+            -
+              name: from
+              type: String
+              info: "A Twilio phone number (in E.164 format) or alphanumeric sender ID enabled for the type of message you wish to send. Phone numbers or short codes purchased from Twilio work here. You cannot (for example) spoof messages from your own cell phone number."
+            -
+              name: messagingServiceSid
+              type: String
+              info: "The 34 character unique id of the Messaging Service you want to associate with this Message. Set this parameter to use the Messaging Service Settings and Copilot Features you have configured. When only this parameter is set, Twilio will use your enabled Copilot Features to select the From phone number for delivery."
+            -
+              name: to
+              type: String
+              info: "The destination phone number. Format with a '+' and country code e.g., +16175551212 (E.164 format)."
+            -
+              name: mediaUrl
+              type: String
+              info: "The URL of the media you wish to send out with the message. gif , png and jpeg content is currently supported and will be formatted correctly on the recipient's device."
+            -
+              name: statusCallback
+              type: String
+              info: "Optional: A URL that Twilio will POST to each time your message status changes to one of the following: queued, failed, sent, delivered, or undelivered."
+            -
+              name: applicationSid
+              type: String
+              info: "Optional: Twilio will POST MessageSid as well as MessageStatus=sent or MessageStatus=failed to the URL in the MessageStatusCallback property of this Application."
+            -
+              name: maxPrice
+              type: String
+              info: "Optional: The total maximum price in US dollars acceptable for the message to be delivered."
+            -
+              name: provideFeedback
+              type: String
+              info: "Optional: Set this value to true if you are sending messages that have a trackable user action and you intend to confirm delivery of the message using the Message Feedback API. This parameter is set to false by default."
+
+services:
+    app_bundle.package_abstract:
+        class: FacebookGraphAPIBundle\Utils\FacebookAbstract
+        abstract: true
+        arguments: ["@request_stack", "@buzz", "%app_bundle.facebookUrl%"]
+    app_bundle.user_functions:
+        class: FacebookGraphAPIBundle\Utils\UserFunctions
+        parent: app_bundle.package_abstract
