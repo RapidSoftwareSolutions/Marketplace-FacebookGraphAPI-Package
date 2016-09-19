@@ -8,14 +8,14 @@ namespace FacebookGraphAPIBundle\Utils;
 
 use FacebookGraphAPIBundle\Utils\Abstracts\FacebookAbstract;
 
-class LikeFunctions extends FacebookAbstract
+class ProfileFunctions extends FacebookAbstract
 {
     /**
-     * get list of likes
+     * get basic information about current user
      *
      * @param $schema
      */
-    public function getLikes($schema)
+    public function getCurrentProfile($schema)
     {
         $this->setResponse(
             $this->sendRequest($schema, $this->prepareQuery($schema)),
@@ -24,11 +24,11 @@ class LikeFunctions extends FacebookAbstract
     }
 
     /**
-     * add a new like
+     * get a profile (User / Page / Group / Event / Application)
      *
      * @param $schema
      */
-    public function addLike($schema)
+    public function getProfile($schema)
     {
         $this->setResponse(
             $this->sendRequest($schema, $this->prepareQuery($schema)),
@@ -37,11 +37,11 @@ class LikeFunctions extends FacebookAbstract
     }
 
     /**
-     * delete a like the user has added
+     * get a profile's (user / page / group / etc...) picture
      *
      * @param $schema
      */
-    public function deleteLike($schema)
+    public function getProfilePicture($schema)
     {
         $this->setResponse(
             $this->sendRequest($schema, $this->prepareQuery($schema)),

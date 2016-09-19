@@ -5,16 +5,17 @@
 
 namespace FacebookGraphAPIBundle\Utils;
 
+
 use FacebookGraphAPIBundle\Utils\Abstracts\FacebookAbstract;
 
-class UserFunctions extends FacebookAbstract
+class CommentFunctions extends FacebookAbstract
 {
     /**
-     * validate token
+     * get comments for a graph object
      *
      * @param $schema
      */
-    public function validateUserToken($schema)
+    public function getComments($schema)
     {
         $this->setResponse(
             $this->sendRequest($schema, $this->prepareQuery($schema)),
@@ -23,11 +24,11 @@ class UserFunctions extends FacebookAbstract
     }
 
     /**
-     * extend user token
+     * post a comment on a graph object
      *
      * @param $schema
      */
-    public function extendUserToken($schema)
+    public function addComment($schema)
     {
         $this->setResponse(
             $this->sendRequest($schema, $this->prepareQuery($schema)),
@@ -36,11 +37,11 @@ class UserFunctions extends FacebookAbstract
     }
 
     /**
-     * get user albums
+     * update a comment
      *
      * @param $schema
      */
-    public function getUserAlbums($schema)
+    public function updateComment($schema)
     {
         $this->setResponse(
             $this->sendRequest($schema, $this->prepareQuery($schema)),
@@ -49,24 +50,11 @@ class UserFunctions extends FacebookAbstract
     }
 
     /**
-     * get users friends
+     * delete a comment
      *
      * @param $schema
      */
-    public function getUsersFriends($schema)
-    {
-        $this->setResponse(
-            $this->sendRequest($schema, $this->prepareQuery($schema)),
-            $schema
-        );
-    }
-
-    /**
-     * get users liked pages
-     *
-     * @param $schema
-     */
-    public function getUsersLikedPages($schema)
+    public function deleteComment($schema)
     {
         $this->setResponse(
             $this->sendRequest($schema, $this->prepareQuery($schema)),

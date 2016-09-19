@@ -5,16 +5,17 @@
 
 namespace FacebookGraphAPIBundle\Utils;
 
+
 use FacebookGraphAPIBundle\Utils\Abstracts\FacebookAbstract;
 
-class UserFunctions extends FacebookAbstract
+class AlbumFunctions extends FacebookAbstract
 {
     /**
-     * validate token
+     * get an album's details
      *
      * @param $schema
      */
-    public function validateUserToken($schema)
+    public function getAlbum($schema)
     {
         $this->setResponse(
             $this->sendRequest($schema, $this->prepareQuery($schema)),
@@ -23,11 +24,11 @@ class UserFunctions extends FacebookAbstract
     }
 
     /**
-     * extend user token
+     * create an album for a user / page
      *
      * @param $schema
      */
-    public function extendUserToken($schema)
+    public function createAlbum($schema)
     {
         $this->setResponse(
             $this->sendRequest($schema, $this->prepareQuery($schema)),
@@ -36,11 +37,11 @@ class UserFunctions extends FacebookAbstract
     }
 
     /**
-     * get user albums
+     * get photos in an album
      *
      * @param $schema
      */
-    public function getUserAlbums($schema)
+    public function getAlbumPhotos($schema)
     {
         $this->setResponse(
             $this->sendRequest($schema, $this->prepareQuery($schema)),
@@ -49,11 +50,11 @@ class UserFunctions extends FacebookAbstract
     }
 
     /**
-     * get users friends
+     * add a photo to an album
      *
      * @param $schema
      */
-    public function getUsersFriends($schema)
+    public function addPhotoToAlbum($schema)
     {
         $this->setResponse(
             $this->sendRequest($schema, $this->prepareQuery($schema)),
@@ -62,11 +63,11 @@ class UserFunctions extends FacebookAbstract
     }
 
     /**
-     * get users liked pages
+     * get a photo's details
      *
      * @param $schema
      */
-    public function getUsersLikedPages($schema)
+    public function getPhoto($schema)
     {
         $this->setResponse(
             $this->sendRequest($schema, $this->prepareQuery($schema)),

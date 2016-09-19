@@ -8,14 +8,14 @@ namespace FacebookGraphAPIBundle\Utils;
 
 use FacebookGraphAPIBundle\Utils\Abstracts\FacebookAbstract;
 
-class LikeFunctions extends FacebookAbstract
+class FeedFunctions extends FacebookAbstract
 {
     /**
-     * get list of likes
+     * get users feed
      *
      * @param $schema
      */
-    public function getLikes($schema)
+    public function getUsersFeed($schema)
     {
         $this->setResponse(
             $this->sendRequest($schema, $this->prepareQuery($schema)),
@@ -24,11 +24,11 @@ class LikeFunctions extends FacebookAbstract
     }
 
     /**
-     * add a new like
+     * post to a user's feed
      *
      * @param $schema
      */
-    public function addLike($schema)
+    public function addFeedPost($schema)
     {
         $this->setResponse(
             $this->sendRequest($schema, $this->prepareQuery($schema)),
@@ -37,11 +37,11 @@ class LikeFunctions extends FacebookAbstract
     }
 
     /**
-     * delete a like the user has added
+     * delete a feed post
      *
      * @param $schema
      */
-    public function deleteLike($schema)
+    public function deleteFeedPost($schema)
     {
         $this->setResponse(
             $this->sendRequest($schema, $this->prepareQuery($schema)),

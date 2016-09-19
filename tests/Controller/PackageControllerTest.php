@@ -10,7 +10,7 @@ class PackageControllerTest extends WebTestCase
     /**
      * @var string
      */
-    public $testAccountSid = 'AC5f37acb24007a320eefb5ffaeb498a78';
+    public $account_token = 'EAAPgIwC9jpcBAHZAEiqHHpNVvGqzPPTE1TbT8Km9GhoMxzPqnnRJS6lAhz2OGgYnA071n14xp08ACSxA6Pe7qXdPuYrOnArrbtXYpchiCY8uzGI0PQ6eZCRiDomqSLhERKLaF3XEVOerbDw4r2ZCL9rG7mvUqAZD';
     /**
      * @var string
      */

@@ -1,188 +1,828 @@
 parameters:
-    app_bundle.facebookUrl: "https://graph.facebook.com/me"
-    app_bundle.validate_user_token_input:
-        input_token: "your_input_token"
-        access_token: "your_access_token"
     app_bundle.packageName: FacebookGraphAPI
     app_bundle.metadata:
         package: "%app_bundle.packageName%"
         tagline: Facebook Graph API Wrapper
         description: This is the main package to interact with Facebook users.
-        image: https://www.twilio.com/marketing/bundles/marketing/img/favicons/favicon.ico
+        image: https://www.facebook.com/images/fb_icon_325x325.png
         repo: https://github.com/RapidSoftwareSolutions/Marketplace-FacebookGraphAPI-Package
-        accounts:
-          domain: facebook.com
-          credentials:
-            - accountSid
-            - accountToken
         blocks:
         -
-          name: makeCall
+          name: validateUserToken
           args:
             -
-              name: accountSid
+              name: access_token
               type: Credentials
-              info: "A 34 character string that uniquely identifies this account."
+              info: "Access token obtained from Facebook which should be validated."
+          callbacks:
             -
-              name: accountToken
-              type: Credentials
-              info: "The authorization token for this account."
+              name: valid
+              info: "valid"
             -
-              name: from
-              type: String
-              info: "The phone number or client identifier to use as the caller id. If using a phone number, it must be a Twilio number or a Verified outgoing caller id for your account."
-            -
-              name: to
-              type: String
-              info: "The phone number, SIP address or client identifier to call."
-            -
-              name: url
-              type: String
-              info: "The fully qualified URL that should be consulted when the call connects. Just like when you set a URL on a phone number for handling inbound calls. See the Url Parameter section below for more details."
-            -
-              name: applicationSid
-              type: String
-              info: "The 34 character sid of the application Twilio should use to handle this phone call. If this parameter is present, Twilio will ignore all of the voice URLs passed and use the URLs set on the application."
-            -
-              name: method
-              type: String
-              info: "Optional: The HTTP method Twilio should use when making its request to the above Url parameter's value. Defaults to POST. If an ApplicationSid parameter is present, this parameter is ignored."
-            -
-              name: fallbackUrl
-              type: String
-              info: "Optional: A URL that Twilio will request if an error occurs requesting or executing the TwiML at Url. If an ApplicationSid parameter is present, this parameter is ignored."
-            -
-              name: fallbackMethod
-              type: String
-              info: "Optional: The HTTP method that Twilio should use to request the FallbackUrl. Must be either GET or POST. Defaults to POST. If an ApplicationSid parameter is present, this parameter is ignored."
-            -
-              name: statusCallback
-              type: String
-              info: "Optional: A URL that Twilio will send asynchronous webhook requests to on every call event specified in the StatusCallbackEvent parameter. If no event is present, Twilio will send completed by default. If an ApplicationSid parameter is present, this parameter is ignored. URLs must contain a valid hostname."
-            -
-              name: statusCallbackMethod
-              type: String
-              info: "Optional: The HTTP method Twilio should use when requesting the above URL. Defaults to POST. If an ApplicationSid parameter is present, this parameter is ignored."
-            -
-              name: statusCallbackEvent
-              type: String
-              info: "Optional: The call progress events that Twilio will send webhooks on. Available values are initiated, ringing, answered, and completed."
-            -
-              name: sendDigits
-              type: String
-              info: "Optional: A string of keys to dial after connecting to the number, maximum of 32 digits."
-            -
-              name: timeout
-              type: String
-              info: "Optional: The integer number of seconds that Twilio should allow the phone to ring before assuming there is no answer."
-            -
-              name: record
-              type: String
-              info: "Optional: Set this parameter to 'true' to record the entirety of a phone call."
-            -
-              name: recordingChannels
-              type: String
-              info: "Optional: Mono or dual. Set this parameter to specify the number of channels in the final recording. Defaults to 'mono'."
-            -
-              name: recordingStatusCallback
-              type: String
-              info: "Optional: The recordingStatusCallback attribute takes an absolute URL as an argument."
-            -
-              name: recordingStatusCallbackMethod
-              type: String
-              info: "Optional: The HTTP method Twilio should use when requesting the above URL. Defaults to POST"
+              name: invalid
+              info: "invalid"
         -
-          name: sendSms
+          name: extendUserToken
           args:
             -
-              name: accountSid
+              name: access_token
               type: Credentials
-              info: "A 34 character string that uniquely identifies this account."
+              info: "Access token obtained from Facebook."
             -
-              name: accountToken
-              type: Credentials
-              info: "The authorization token for this account."
-            -
-              name: from
+              name: app_id
               type: String
-              info: "A Twilio phone number (in E.164 format) or alphanumeric sender ID enabled for the type of message you wish to send. Phone numbers or short codes purchased from Twilio work here. You cannot (for example) spoof messages from your own cell phone number."
+              info: "The App ID."
             -
-              name: messagingServiceSid
+              name: app_secret
               type: String
-              info: "The 34 character unique id of the Messaging Service you want to associate with this Message. Set this parameter to use the Messaging Service Settings and Copilot Features you have configured. When only this parameter is set, Twilio will use your enabled Copilot Features to select the From phone number for delivery."
+              info: "The app's app secret."
+          callbacks:
             -
-              name: to
-              type: String
-              info: "The destination phone number. Format with a '+' and country code e.g., +16175551212 (E.164 format)."
+              name: error
+              info: "error"
             -
-              name: body
-              type: String
-              info: "The text of the message you want to send, limited to 1600 characters."
-            -
-              name: statusCallback
-              type: String
-              info: "Optional: A URL that Twilio will POST to each time your message status changes to one of the following: queued, failed, sent, delivered, or undelivered."
-            -
-              name: applicationSid
-              type: String
-              info: "Optional: Twilio will POST MessageSid as well as MessageStatus=sent or MessageStatus=failed to the URL in the MessageStatusCallback property of this Application."
-            -
-              name: maxPrice
-              type: String
-              info: "Optional: The total maximum price in US dollars acceptable for the message to be delivered."
-            -
-              name: provideFeedback
-              type: String
-              info: "Optional: Set this value to true if you are sending messages that have a trackable user action and you intend to confirm delivery of the message using the Message Feedback API. This parameter is set to false by default."
+              name: success
+              info: "success"
         -
-          name: sendMms
+          name: getUserAlbums
           args:
             -
-              name: accountSid
+              name: access_token
               type: Credentials
-              info: "A 34 character string that uniquely identifies this account."
+              info: "Access token obtained from Facebook."
             -
-              name: accountToken
+              name: prodile_id
+              type: String
+              info: "[opt, =me], Facebook profile id."
+          callbacks:
+            -
+              name: error
+              info: "error"
+            -
+              name: success
+              info: "success"
+        -
+          name: getUsersFriends
+          args:
+            -
+              name: access_token
               type: Credentials
-              info: "The authorization token for this account."
+              info: "Access token obtained from Facebook."
             -
-              name: from
+              name: user_id
               type: String
-              info: "A Twilio phone number (in E.164 format) or alphanumeric sender ID enabled for the type of message you wish to send. Phone numbers or short codes purchased from Twilio work here. You cannot (for example) spoof messages from your own cell phone number."
+              info: "[opt, =me], Facebook user id."
+          callbacks:
             -
-              name: messagingServiceSid
-              type: String
-              info: "The 34 character unique id of the Messaging Service you want to associate with this Message. Set this parameter to use the Messaging Service Settings and Copilot Features you have configured. When only this parameter is set, Twilio will use your enabled Copilot Features to select the From phone number for delivery."
+              name: error
+              info: "error"
             -
-              name: to
-              type: String
-              info: "The destination phone number. Format with a '+' and country code e.g., +16175551212 (E.164 format)."
+              name: success
+              info: "success"
+        -
+          name: getUsersLikedPages
+          args:
             -
-              name: mediaUrl
-              type: String
-              info: "The URL of the media you wish to send out with the message. gif , png and jpeg content is currently supported and will be formatted correctly on the recipient's device."
+              name: access_token
+              type: Credentials
+              info: "Access token obtained from Facebook."
             -
-              name: statusCallback
+              name: user_id
               type: String
-              info: "Optional: A URL that Twilio will POST to each time your message status changes to one of the following: queued, failed, sent, delivered, or undelivered."
+              info: "[opt, =me], Facebook user id."
+          callbacks:
             -
-              name: applicationSid
-              type: String
-              info: "Optional: Twilio will POST MessageSid as well as MessageStatus=sent or MessageStatus=failed to the URL in the MessageStatusCallback property of this Application."
+              name: error
+              info: "error"
             -
-              name: maxPrice
-              type: String
-              info: "Optional: The total maximum price in US dollars acceptable for the message to be delivered."
+              name: success
+              info: "success"
+        -
+          name: getCurrentProfile
+          args:
             -
-              name: provideFeedback
+              name: access_token
+              type: Credentials
+              info: "Access token obtained from Facebook."
+          callbacks:
+            -
+              name: error
+              info: "error"
+            -
+              name: success
+              info: "success"
+        -
+          name: getProfile
+          args:
+            -
+              name: access_token
+              type: Credentials
+              info: "Access token obtained from Facebook."
+            -
+              name: profile_id
               type: String
-              info: "Optional: Set this value to true if you are sending messages that have a trackable user action and you intend to confirm delivery of the message using the Message Feedback API. This parameter is set to false by default."
+              info: "[opt, =me], Facebook profile id."
+          callbacks:
+            -
+              name: error
+              info: "error"
+            -
+              name: success
+              info: "success"
+        -
+          name: getProfilePicture
+          args:
+            -
+              name: access_token
+              type: Credentials
+              info: "Access token obtained from Facebook."
+            -
+              name: profile_id
+              type: String
+              info: "[opt, =me], Facebook profile id."
+          callbacks:
+            -
+              name: error
+              info: "error"
+            -
+              name: success
+              info: "success"
+        -
+          name: getLikes
+          args:
+            -
+              name: access_token
+              type: Credentials
+              info: "Access token obtained from Facebook."
+            -
+              name: object_id
+              type: String
+              info: "Facebook object id."
+          callbacks:
+            -
+              name: error
+              info: "error"
+            -
+              name: success
+              info: "success"
+        -
+          name: addLike
+          args:
+            -
+              name: access_token
+              type: Credentials
+              info: "Access token obtained from Facebook."
+            -
+              name: object_id
+              type: String
+              info: "Facebook object id."
+          callbacks:
+            -
+              name: error
+              info: "error"
+            -
+              name: success
+              info: "success"
+        -
+          name: deleteLike
+          args:
+            -
+              name: access_token
+              type: Credentials
+              info: "Access token obtained from Facebook."
+            -
+              name: object_id
+              type: String
+              info: "Facebook object id."
+          callbacks:
+            -
+              name: error
+              info: "error"
+            -
+              name: success
+              info: "success"
+        -
+          name: getUsersFeed
+          args:
+            -
+              name: access_token
+              type: Credentials
+              info: "Access token obtained from Facebook."
+            -
+              name: user_id
+              type: String
+              info: "[opt, =me], Facebook user id."
+          callbacks:
+            -
+              name: error
+              info: "error"
+            -
+              name: success
+              info: "success"
+        -
+          name: addFeedPost
+          args:
+            -
+              name: access_token
+              type: Credentials
+              info: "Access token obtained from Facebook."
+            -
+              name: message
+              type: String
+              info: "The main body of the post, otherwise called the status message. Either link, place, or message must be supplied."
+            -
+              name: link
+              type: String
+              info: "The URL of a link to attach to the post. Either link, place, or message must be supplied. Additional fields associated with link are shown below."
+            -
+              name: place
+              type: String
+              info: "Page ID of a location associated with this post. Either link, place, or message must be supplied.."
+            -
+              name: tags
+              type: String
+              info: "Comma-separated list of user IDs of people tagged in this post. You cannot specify this field without also specifying a place."
+            -
+              name: privacy
+              type: String
+              info: "Determines the privacy settings of the post. If not supplied, this defaults to the privacy level granted to the app in the Login Dialog. This field cannot be used to set a more open privacy setting than the one granted."
+            -
+              name: object_attachment
+              type: String
+              info: "Facebook ID for an existing picture in the person's photo albums to use as the thumbnail image. They must be the owner of the photo, and the photo cannot be part of a message attachment."
+          callbacks:
+            -
+              name: error
+              info: "error"
+            -
+              name: success
+              info: "success"
+        -
+          name: deleteFeedPost
+          args:
+            -
+              name: access_token
+              type: Credentials
+              info: "Access token obtained from Facebook."
+            -
+              name: post_id
+              type: String
+              info: "Facebook post id."
+          callbacks:
+            -
+              name: error
+              info: "error"
+            -
+              name: success
+              info: "success"
+        -
+          name: getComments
+          args:
+            -
+              name: access_token
+              type: Credentials
+              info: "Access token obtained from Facebook."
+            -
+              name: object_id
+              type: String
+              info: "Facebook object id."
+          callbacks:
+            -
+              name: error
+              info: "error"
+            -
+              name: success
+              info: "success"
+        -
+          name: addComment
+          args:
+            -
+              name: access_token
+              type: Credentials
+              info: "Access token obtained from Facebook."
+            -
+              name: object_id
+              type: String
+              info: "Facebook object id."
+            -
+              name: message
+              type: String
+              info: "Facebook object id."
+            -
+              name: attachment_id
+              type: String
+              info: "Facebook object id."
+            -
+              name: attachment_url
+              type: String
+              info: "Facebook object id."
+          callbacks:
+            -
+              name: error
+              info: "error"
+            -
+              name: success
+              info: "success"
+        -
+          name: updateComment
+          args:
+            -
+              name: access_token
+              type: Credentials
+              info: "Access token obtained from Facebook."
+            -
+              name: comment_id
+              type: String
+              info: "Facebook comment id."
+            -
+              name: message
+              type: String
+              info: "Facebook comment id."
+            -
+              name: is_hidden
+              type: String
+              info: "Facebook comment id."
+          callbacks:
+            -
+              name: error
+              info: "error"
+            -
+              name: success
+              info: "success"
+        -
+          name: deleteComment
+          args:
+            -
+              name: access_token
+              type: Credentials
+              info: "Access token obtained from Facebook."
+            -
+              name: comment_id
+              type: String
+              info: "Facebook comment id."
+          callbacks:
+            -
+              name: error
+              info: "error"
+            -
+              name: success
+              info: "success"
+        -
+          name: getAlbum
+          args:
+            -
+              name: access_token
+              type: Credentials
+              info: "Access token obtained from Facebook."
+            -
+              name: album_id
+              type: String
+              info: "Facebook album id."
+          callbacks:
+            -
+              name: error
+              info: "error"
+            -
+              name: success
+              info: "success"
+        -
+          name: createAlbum
+          args:
+            -
+              name: access_token
+              type: Credentials
+              info: "Access token obtained from Facebook."
+            -
+              name: profile_id
+              type: String
+              info: "Facebook profile id."
+            -
+              name: name
+              type: String
+              info: "Album name"
+          callbacks:
+            -
+              name: error
+              info: "error"
+            -
+              name: success
+              info: "success"
+        -
+          name: getAlbumPhotos
+          args:
+            -
+              name: access_token
+              type: Credentials
+              info: "Access token obtained from Facebook."
+            -
+              name: album_id
+              type: String
+              info: "Facebook album id."
+          callbacks:
+            -
+              name: error
+              info: "error"
+            -
+              name: success
+              info: "success"
+        -
+          name: addPhotoToAlbum
+          args:
+            -
+              name: access_token
+              type: Credentials
+              info: "Access token obtained from Facebook."
+            -
+              name: album_id
+              type: String
+              info: "Facebook album id."
+          callbacks:
+            -
+              name: error
+              info: "error"
+            -
+              name: success
+              info: "success"
+        -
+          name: getPhoto
+          args:
+            -
+              name: access_token
+              type: Credentials
+              info: "Access token obtained from Facebook."
+            -
+              name: photo_id
+              type: String
+              info: "Facebook photo id."
+          callbacks:
+            -
+              name: error
+              info: "error"
+            -
+              name: success
+              info: "success"
+
+    app_bundle.facebookUrl: "https://graph.facebook.com/v2.7/"
+    app_bundle.access_token: "access_token"
+    app_bundle.default_profile: "me"
+    app_bundle.validate_user_token:
+      url: "%app_bundle.facebookUrl%"
+      uri: "debug_token?"
+      method: "get"
+      args_in_body: false
+      object:
+        optimal: false
+        default: ""
+        error: "Missing required parameters"
+      callback_message:
+        error: "error"
+        valid: "valid"
+        invalid: "invalid"
+      args:
+        input_token: "%app_bundle.access_token%"
+        access_token: "%app_bundle.access_token%"
+    app_bundle.extend_user_token:
+      url: "%app_bundle.facebookUrl%"
+      uri: "/access_token?grant_type=fb_exchange_token&"
+      method: "get"
+      args_in_body: false
+      object:
+        optimal: false
+        default: "oauth"
+        error: "Missing required parameters"
+      callback_message:
+        error: "error"
+        success: "success"
+      args:
+        client_id: "app_id"
+        client_secret: "app_secret"
+        fb_exchange_token: "%app_bundle.access_token%"
+    app_bundle.get_user_albums:
+      url: "%app_bundle.facebookUrl%"
+      uri: "/albums?"
+      method: "get"
+      args_in_body: false
+      object:
+        optimal: "profile_id"
+        default: "%app_bundle.default_profile%"
+        error: "Missing required parameters"
+      callback_message:
+        error: "error"
+        success: "success"
+      args:
+        access_token: "%app_bundle.access_token%"
+    app_bundle.get_users_friends:
+      url: "%app_bundle.facebookUrl%"
+      uri: "/friends?"
+      method: "get"
+      args_in_body: false
+      object:
+        optimal: "user_id"
+        default: "%app_bundle.default_profile%"
+        error: "Missing required parameters"
+      callback_message:
+        error: "error"
+        success: "success"
+      args:
+        limit: "limit?"
+        access_token: "%app_bundle.access_token%"
+    app_bundle.get_users_liked_pages:
+      url: "%app_bundle.facebookUrl%"
+      uri: "/likes?"
+      method: "get"
+      args_in_body: false
+      object:
+        optimal: "user_id"
+        default: "%app_bundle.default_profile%"
+        error: "Missing required parameters"
+      callback_message:
+        error: "error"
+        success: "success"
+      args:
+        access_token: "%app_bundle.access_token%"
+    app_bundle.get_current_profile:
+      url: "%app_bundle.facebookUrl%"
+      uri: "/?"
+      method: "get"
+      args_in_body: false
+      object:
+        optimal: false
+        default: "%app_bundle.default_profile%"
+        error: "Missing required parameters"
+      callback_message:
+        error: "error"
+        success: "success"
+      args:
+        access_token: "%app_bundle.access_token%"
+    app_bundle.get_profile:
+      url: "%app_bundle.facebookUrl%"
+      uri: "/?"
+      method: "get"
+      args_in_body: false
+      object:
+        optimal: "profile_id"
+        default: false
+        error: "Missing required parameters"
+      callback_message:
+        error: "error"
+        success: "success"
+      args:
+        access_token: "%app_bundle.access_token%"
+    app_bundle.get_profile_picture:
+      url: "%app_bundle.facebookUrl%"
+      uri: "/picture?"
+      method: "get"
+      args_in_body: false
+      object:
+        optimal: "user_id"
+        default: "%app_bundle.default_profile%"
+        error: "Missing required parameters"
+      callback_message:
+        error: "error"
+        success: "success"
+      args:
+        access_token: "%app_bundle.access_token%"
+    app_bundle.get_likes:
+      url: "%app_bundle.facebookUrl%"
+      uri: "/likes?"
+      method: "get"
+      args_in_body: false
+      object:
+        optimal: "object_id"
+        default: false
+        error: "Missing required parameters"
+      callback_message:
+        error: "error"
+        success: "success"
+      args:
+        access_token: "%app_bundle.access_token%"
+    app_bundle.add_like:
+      url: "%app_bundle.facebookUrl%"
+      uri: "/likes?"
+      method: "post"
+      args_in_body: false
+      object:
+        optimal: "object_id"
+        default: false
+        error: "Missing required parameters"
+      callback_message:
+        error: "error"
+        success: "success"
+      args:
+        access_token: "%app_bundle.access_token%"
+    app_bundle.delete_like:
+      url: "%app_bundle.facebookUrl%"
+      uri: "/likes?"
+      method: "delete"
+      args_in_body: false
+      object:
+        optimal: "object_id"
+        default: "%app_bundle.default_profile%"
+        error: "Missing required parameters"
+      callback_message:
+        error: "error"
+        success: "success"
+      args:
+        access_token: "%app_bundle.access_token%"
+    app_bundle.get_users_feed:
+      url: "%app_bundle.facebookUrl%"
+      uri: "/feed?"
+      method: "get"
+      args_in_body: false
+      object:
+        optimal: "user_id"
+        default: "%app_bundle.default_profile%"
+        error: "Missing required parameters"
+      callback_message:
+        error: "error"
+        success: "success"
+      args:
+        access_token: "%app_bundle.access_token%"
+    app_bundle.add_feed_post:
+      url: "%app_bundle.facebookUrl%"
+      uri: "/feed?"
+      method: "post"
+      args_in_body: true
+      object:
+        optimal: false
+        default: "%app_bundle.default_profile%"
+        error: "Missing required parameters"
+      callback_message:
+        error: "error"
+        success: "success"
+      args:
+        message: "message"
+        link: "link"
+        place: "place"
+        tags: "tags"
+        privacy: "privacy"
+        object_attachment: "object_attachment"
+        access_token: "%app_bundle.access_token%"
+    app_bundle.delete_feed_post:
+      url: "%app_bundle.facebookUrl%"
+      uri: "/?"
+      method: "delete"
+      args_in_body: false
+      object:
+        optimal: "post_id"
+        default: false
+        error: "Missing required parameters"
+      callback_message:
+        error: "error"
+        success: "success"
+      args:
+        access_token: "%app_bundle.access_token%"
+    app_bundle.get_comments:
+      url: "%app_bundle.facebookUrl%"
+      uri: "/comments?"
+      method: "get"
+      args_in_body: false
+      object:
+        optimal: "object_id"
+        default: false
+        error: "Missing required parameters"
+      callback_message:
+        error: "error"
+        success: "success"
+      args:
+        access_token: "%app_bundle.access_token%"
+    app_bundle.add_comment:
+      url: "%app_bundle.facebookUrl%"
+      uri: "/comments?"
+      method: "post"
+      args_in_body: true
+      object:
+        optimal: "object_id"
+        default: false
+        error: "Missing required parameters"
+      callback_message:
+        error: "error"
+        success: "success"
+      args:
+        access_token: "%app_bundle.access_token%"
+    app_bundle.update_comment:
+      url: "%app_bundle.facebookUrl%"
+      uri: "/?"
+      method: "post"
+      args_in_body: true
+      object:
+        optimal: "comment_id"
+        default: false
+        error: "Missing required parameters"
+      callback_message:
+        error: "error"
+        success: "success"
+      args:
+        access_token: "%app_bundle.access_token%"
+    app_bundle.delete_comment:
+      url: "%app_bundle.facebookUrl%"
+      uri: "/?"
+      method: "delete"
+      args_in_body: false
+      object:
+        optimal: "comment_id"
+        default: false
+        error: "Missing required parameters"
+      callback_message:
+        error: "error"
+        success: "success"
+      args:
+        access_token: "%app_bundle.access_token%"
+    app_bundle.get_album:
+      url: "%app_bundle.facebookUrl%"
+      uri: "/?"
+      method: "get"
+      args_in_body: false
+      object:
+        optimal: "album_id"
+        default: false
+        error: "Missing required parameters"
+      callback_message:
+        error: "error"
+        success: "success"
+      args:
+        access_token: "%app_bundle.access_token%"
+    app_bundle.create_album:
+      url: "%app_bundle.facebookUrl%"
+      uri: "/albums?"
+      method: "post"
+      args_in_body: false
+      object:
+        optimal: "profile_id"
+        default: false
+        error: "Missing required parameters"
+      callback_message:
+        error: "error"
+        success: "success"
+      args:
+        access_token: "%app_bundle.access_token%"
+    app_bundle.get_album_photos:
+      url: "%app_bundle.facebookUrl%"
+      uri: "/photos?"
+      method: "get"
+      args_in_body: false
+      object:
+        optimal: "album_id"
+        default: false
+        error: "Missing required parameters"
+      callback_message:
+        error: "error"
+        success: "success"
+      args:
+        access_token: "%app_bundle.access_token%"
+    app_bundle.add_photo_to_album:
+      url: "%app_bundle.facebookUrl%"
+      uri: "/photos?"
+      method: "post"
+      args_in_body: true
+      object:
+        optimal: "album_id"
+        default: false
+        error: "Missing required parameters"
+      callback_message:
+        error: "error"
+        success: "success"
+      args:
+        url: "photo"
+        message: "message"
+        place: "place"
+        no_story: "no_story"
+        access_token: "%app_bundle.access_token%"
+    app_bundle.get_photo:
+      url: "%app_bundle.facebookUrl%"
+      uri: "/?"
+      method: "get"
+      args_in_body: false
+      object:
+        optimal: "photo_id"
+        default: false
+        error: "Missing required parameters"
+      callback_message:
+        error: "error"
+        success: "success"
+      args:
+        access_token: "%app_bundle.access_token%"
 
 services:
     app_bundle.package_abstract:
         class: FacebookGraphAPIBundle\Utils\FacebookAbstract
         abstract: true
-        arguments: ["@request_stack", "@buzz", "%app_bundle.facebookUrl%"]
+        arguments: ["@request_stack", "@buzz"]
     app_bundle.user_functions:
         class: FacebookGraphAPIBundle\Utils\UserFunctions
+        parent: app_bundle.package_abstract
+    app_bundle.like_functions:
+        class: FacebookGraphAPIBundle\Utils\LikeFunctions
+        parent: app_bundle.package_abstract
+    app_bundle.comment_functions:
+        class: FacebookGraphAPIBundle\Utils\CommentFunctions
+        parent: app_bundle.package_abstract
+    app_bundle.album_functions:
+        class: FacebookGraphAPIBundle\Utils\AlbumFunctions
+        parent: app_bundle.package_abstract
+    app_bundle.feed_functions:
+        class: FacebookGraphAPIBundle\Utils\FeedFunctions
+        parent: app_bundle.package_abstract
+    app_bundle.profile_functions:
+        class: FacebookGraphAPIBundle\Utils\ProfileFunctions
         parent: app_bundle.package_abstract
