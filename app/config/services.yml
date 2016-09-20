@@ -6,13 +6,17 @@ parameters:
         description: This is the main package to interact with Facebook users.
         image: https://www.facebook.com/images/fb_icon_325x325.png
         repo: https://github.com/RapidSoftwareSolutions/Marketplace-FacebookGraphAPI-Package
+        accounts:
+          domain: facebook.com
+          credentials:
+            - access_token
         blocks:
         -
           name: validateUserToken
           args:
             -
               name: access_token
-              type: Credentials
+              type: String
               info: "Access token obtained from Facebook which should be validated."
           callbacks:
             -
@@ -26,7 +30,7 @@ parameters:
           args:
             -
               name: access_token
-              type: Credentials
+              type: String
               info: "Access token obtained from Facebook."
             -
               name: app_id
@@ -48,7 +52,7 @@ parameters:
           args:
             -
               name: access_token
-              type: Credentials
+              type: String
               info: "Access token obtained from Facebook."
             -
               name: prodile_id
@@ -66,7 +70,7 @@ parameters:
           args:
             -
               name: access_token
-              type: Credentials
+              type: String
               info: "Access token obtained from Facebook."
             -
               name: user_id
@@ -84,7 +88,7 @@ parameters:
           args:
             -
               name: access_token
-              type: Credentials
+              type: String
               info: "Access token obtained from Facebook."
             -
               name: user_id
@@ -102,7 +106,7 @@ parameters:
           args:
             -
               name: access_token
-              type: Credentials
+              type: String
               info: "Access token obtained from Facebook."
           callbacks:
             -
@@ -116,7 +120,7 @@ parameters:
           args:
             -
               name: access_token
-              type: Credentials
+              type: String
               info: "Access token obtained from Facebook."
             -
               name: profile_id
@@ -134,7 +138,7 @@ parameters:
           args:
             -
               name: access_token
-              type: Credentials
+              type: String
               info: "Access token obtained from Facebook."
             -
               name: profile_id
@@ -152,7 +156,7 @@ parameters:
           args:
             -
               name: access_token
-              type: Credentials
+              type: String
               info: "Access token obtained from Facebook."
             -
               name: object_id
@@ -170,7 +174,7 @@ parameters:
           args:
             -
               name: access_token
-              type: Credentials
+              type: String
               info: "Access token obtained from Facebook."
             -
               name: object_id
@@ -188,7 +192,7 @@ parameters:
           args:
             -
               name: access_token
-              type: Credentials
+              type: String
               info: "Access token obtained from Facebook."
             -
               name: object_id
@@ -206,7 +210,7 @@ parameters:
           args:
             -
               name: access_token
-              type: Credentials
+              type: String
               info: "Access token obtained from Facebook."
             -
               name: user_id
@@ -224,32 +228,32 @@ parameters:
           args:
             -
               name: access_token
-              type: Credentials
+              type: String
               info: "Access token obtained from Facebook."
             -
               name: message
               type: String
-              info: "The main body of the post, otherwise called the status message. Either link, place, or message must be supplied."
+              info: "Optimal: The main body of the post, otherwise called the status message. Either link, place, or message must be supplied."
             -
               name: link
               type: String
-              info: "The URL of a link to attach to the post. Either link, place, or message must be supplied. Additional fields associated with link are shown below."
+              info: "Optimal: The URL of a link to attach to the post. Either link, place, or message must be supplied. Additional fields associated with link are shown below."
             -
               name: place
               type: String
-              info: "Page ID of a location associated with this post. Either link, place, or message must be supplied.."
+              info: "Optimal: Page ID of a location associated with this post. Either link, place, or message must be supplied.."
             -
               name: tags
               type: String
-              info: "Comma-separated list of user IDs of people tagged in this post. You cannot specify this field without also specifying a place."
+              info: "Optimal: Comma-separated list of user IDs of people tagged in this post. You cannot specify this field without also specifying a place."
             -
               name: privacy
               type: String
-              info: "Determines the privacy settings of the post. If not supplied, this defaults to the privacy level granted to the app in the Login Dialog. This field cannot be used to set a more open privacy setting than the one granted."
+              info: "Optimal: Determines the privacy settings of the post. If not supplied, this defaults to the privacy level granted to the app in the Login Dialog. This field cannot be used to set a more open privacy setting than the one granted."
             -
               name: object_attachment
               type: String
-              info: "Facebook ID for an existing picture in the person's photo albums to use as the thumbnail image. They must be the owner of the photo, and the photo cannot be part of a message attachment."
+              info: "Optimal: Facebook ID for an existing picture in the person's photo albums to use as the thumbnail image. They must be the owner of the photo, and the photo cannot be part of a message attachment."
           callbacks:
             -
               name: error
@@ -262,7 +266,7 @@ parameters:
           args:
             -
               name: access_token
-              type: Credentials
+              type: String
               info: "Access token obtained from Facebook."
             -
               name: post_id
@@ -280,7 +284,7 @@ parameters:
           args:
             -
               name: access_token
-              type: Credentials
+              type: String
               info: "Access token obtained from Facebook."
             -
               name: object_id
@@ -298,7 +302,7 @@ parameters:
           args:
             -
               name: access_token
-              type: Credentials
+              type: String
               info: "Access token obtained from Facebook."
             -
               name: object_id
@@ -307,15 +311,15 @@ parameters:
             -
               name: message
               type: String
-              info: "Facebook object id."
+              info: "Optimal: The comment text"
             -
               name: attachment_id
               type: String
-              info: "Facebook object id."
+              info: "Optimal: An optional ID of a unpublished photo uploaded to Facebook to include as a photo comment. "
             -
               name: attachment_url
               type: String
-              info: "Facebook object id."
+              info: "Optimal: The URL of an image to include as a photo comment."
           callbacks:
             -
               name: error
@@ -328,7 +332,7 @@ parameters:
           args:
             -
               name: access_token
-              type: Credentials
+              type: String
               info: "Access token obtained from Facebook."
             -
               name: comment_id
@@ -337,11 +341,11 @@ parameters:
             -
               name: message
               type: String
-              info: "Facebook comment id."
+              info: "The updated comment text."
             -
               name: is_hidden
               type: String
-              info: "Facebook comment id."
+              info: "Whether this comment is hidden or visible. The original poster can still see the comment, along with the page admin and anyone else tagged in the comment"
           callbacks:
             -
               name: error
@@ -354,7 +358,7 @@ parameters:
           args:
             -
               name: access_token
-              type: Credentials
+              type: String
               info: "Access token obtained from Facebook."
             -
               name: comment_id
@@ -372,7 +376,7 @@ parameters:
           args:
             -
               name: access_token
-              type: Credentials
+              type: String
               info: "Access token obtained from Facebook."
             -
               name: album_id
@@ -390,7 +394,7 @@ parameters:
           args:
             -
               name: access_token
-              type: Credentials
+              type: String
               info: "Access token obtained from Facebook."
             -
               name: profile_id
@@ -399,7 +403,23 @@ parameters:
             -
               name: name
               type: String
-              info: "Album name"
+              info: "The title of the album"
+            -
+              name: location
+              type: String
+              info: "Optimal: A text location of the album for non-page locations."
+            -
+              name: message
+              type: String
+              info: "Optimal: The album's caption. This appears below the title of the album in the album view."
+            -
+              name: place
+              type: String
+              info: "Optimal: The ID of a location page to tag the album with."
+            -
+              name: privacy
+              type: String
+              info: "Optimal: The privacy of the album."
           callbacks:
             -
               name: error
@@ -412,7 +432,7 @@ parameters:
           args:
             -
               name: access_token
-              type: Credentials
+              type: String
               info: "Access token obtained from Facebook."
             -
               name: album_id
@@ -430,12 +450,28 @@ parameters:
           args:
             -
               name: access_token
-              type: Credentials
+              type: String
               info: "Access token obtained from Facebook."
             -
               name: album_id
               type: String
               info: "Facebook album id."
+            -
+              name: photo
+              type: String
+              info: "The URL of a photo that is already uploaded to the internet."
+            -
+              name: message
+              type: String
+              info: "Optimal: The description of the photo, used as the accompanying status message in any feed story."
+            -
+              name: place
+              type: String
+              info: "Optimal: Page ID of a place associated with the Photo."
+            -
+              name: no_story
+              type: String
+              info: "Optimal: If set to true, this will suppress the feed story that is automatically generated on a person's profile when they upload a photo using your app."
           callbacks:
             -
               name: error
@@ -448,7 +484,7 @@ parameters:
           args:
             -
               name: access_token
-              type: Credentials
+              type: String
               info: "Access token obtained from Facebook."
             -
               name: photo_id
@@ -465,6 +501,7 @@ parameters:
     app_bundle.facebookUrl: "https://graph.facebook.com/v2.7/"
     app_bundle.access_token: "access_token"
     app_bundle.default_profile: "me"
+    app_bundle.pagination_limit: 150
     app_bundle.validate_user_token:
       url: "%app_bundle.facebookUrl%"
       uri: "debug_token?"
@@ -570,11 +607,11 @@ parameters:
         access_token: "%app_bundle.access_token%"
     app_bundle.get_profile_picture:
       url: "%app_bundle.facebookUrl%"
-      uri: "/picture?"
+      uri: "/picture?type=large&redirect=false&"
       method: "get"
       args_in_body: false
       object:
-        optimal: "user_id"
+        optimal: "profile_id"
         default: "%app_bundle.default_profile%"
         error: "Missing required parameters"
       callback_message:
@@ -642,7 +679,7 @@ parameters:
       url: "%app_bundle.facebookUrl%"
       uri: "/feed?"
       method: "post"
-      args_in_body: true
+      args_in_body: false
       object:
         optimal: false
         default: "%app_bundle.default_profile%"
@@ -690,7 +727,7 @@ parameters:
       url: "%app_bundle.facebookUrl%"
       uri: "/comments?"
       method: "post"
-      args_in_body: true
+      args_in_body: false
       object:
         optimal: "object_id"
         default: false
@@ -699,12 +736,15 @@ parameters:
         error: "error"
         success: "success"
       args:
+        message: "message"
+        attachment_id: "attachment_id"
+        attachment_url: "attachment_url"
         access_token: "%app_bundle.access_token%"
     app_bundle.update_comment:
       url: "%app_bundle.facebookUrl%"
       uri: "/?"
       method: "post"
-      args_in_body: true
+      args_in_body: false
       object:
         optimal: "comment_id"
         default: false
@@ -713,6 +753,8 @@ parameters:
         error: "error"
         success: "success"
       args:
+        message: "message"
+        is_hidden: "is_hidden"
         access_token: "%app_bundle.access_token%"
     app_bundle.delete_comment:
       url: "%app_bundle.facebookUrl%"
@@ -755,6 +797,11 @@ parameters:
         error: "error"
         success: "success"
       args:
+        name: "name"
+        location: "location"
+        message: "message"
+        place: "place"
+        privacy: "privacy"
         access_token: "%app_bundle.access_token%"
     app_bundle.get_album_photos:
       url: "%app_bundle.facebookUrl%"

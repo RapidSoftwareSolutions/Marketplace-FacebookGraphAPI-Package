@@ -17,10 +17,11 @@ class FeedFunctions extends FacebookAbstract
      */
     public function getUsersFeed($schema)
     {
-        $this->setResponse(
-            $this->sendRequest($schema, $this->prepareQuery($schema)),
-            $schema
-        );
+        $this->result = json_decode($this->sendRequest($schema, $this->prepareQuery($schema)), true);
+
+        $this->pagination($schema);
+
+        $this->setResponse($schema);
     }
 
     /**
@@ -30,10 +31,11 @@ class FeedFunctions extends FacebookAbstract
      */
     public function addFeedPost($schema)
     {
-        $this->setResponse(
-            $this->sendRequest($schema, $this->prepareQuery($schema)),
-            $schema
-        );
+        $this->result = json_decode($this->sendRequest($schema, $this->prepareQuery($schema)), true);
+
+        $this->pagination($schema);
+
+        $this->setResponse($schema);
     }
 
     /**
@@ -43,10 +45,11 @@ class FeedFunctions extends FacebookAbstract
      */
     public function deleteFeedPost($schema)
     {
-        $this->setResponse(
-            $this->sendRequest($schema, $this->prepareQuery($schema)),
-            $schema
-        );
+        $this->result = json_decode($this->sendRequest($schema, $this->prepareQuery($schema)), true);
+
+        $this->pagination($schema);
+
+        $this->setResponse($schema);
     }
 
 }

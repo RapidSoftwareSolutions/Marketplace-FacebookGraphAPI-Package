@@ -17,10 +17,11 @@ class CommentFunctions extends FacebookAbstract
      */
     public function getComments($schema)
     {
-        $this->setResponse(
-            $this->sendRequest($schema, $this->prepareQuery($schema)),
-            $schema
-        );
+        $this->result = json_decode($this->sendRequest($schema, $this->prepareQuery($schema)), true);
+
+        $this->pagination($schema);
+
+        $this->setResponse($schema);
     }
 
     /**
@@ -30,10 +31,11 @@ class CommentFunctions extends FacebookAbstract
      */
     public function addComment($schema)
     {
-        $this->setResponse(
-            $this->sendRequest($schema, $this->prepareQuery($schema)),
-            $schema
-        );
+        $this->result = json_decode($this->sendRequest($schema, $this->prepareQuery($schema)), true);
+
+        $this->pagination($schema);
+
+        $this->setResponse($schema);
     }
 
     /**
@@ -43,10 +45,11 @@ class CommentFunctions extends FacebookAbstract
      */
     public function updateComment($schema)
     {
-        $this->setResponse(
-            $this->sendRequest($schema, $this->prepareQuery($schema)),
-            $schema
-        );
+        $this->result = json_decode($this->sendRequest($schema, $this->prepareQuery($schema)), true);
+
+        $this->pagination($schema);
+
+        $this->setResponse($schema);
     }
 
     /**
@@ -56,10 +59,11 @@ class CommentFunctions extends FacebookAbstract
      */
     public function deleteComment($schema)
     {
-        $this->setResponse(
-            $this->sendRequest($schema, $this->prepareQuery($schema)),
-            $schema
-        );
+        $this->result = json_decode($this->sendRequest($schema, $this->prepareQuery($schema)), true);
+
+        $this->pagination($schema);
+
+        $this->setResponse($schema);
     }
 
 }

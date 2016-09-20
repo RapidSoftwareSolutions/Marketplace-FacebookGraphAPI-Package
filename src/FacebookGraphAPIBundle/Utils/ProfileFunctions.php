@@ -17,10 +17,11 @@ class ProfileFunctions extends FacebookAbstract
      */
     public function getCurrentProfile($schema)
     {
-        $this->setResponse(
-            $this->sendRequest($schema, $this->prepareQuery($schema)),
-            $schema
-        );
+        $this->result = json_decode($this->sendRequest($schema, $this->prepareQuery($schema)), true);
+
+        $this->pagination($schema);
+
+        $this->setResponse($schema);
     }
 
     /**
@@ -30,10 +31,11 @@ class ProfileFunctions extends FacebookAbstract
      */
     public function getProfile($schema)
     {
-        $this->setResponse(
-            $this->sendRequest($schema, $this->prepareQuery($schema)),
-            $schema
-        );
+        $this->result = json_decode($this->sendRequest($schema, $this->prepareQuery($schema)), true);
+
+        $this->pagination($schema);
+
+        $this->setResponse($schema);
     }
 
     /**
@@ -43,10 +45,11 @@ class ProfileFunctions extends FacebookAbstract
      */
     public function getProfilePicture($schema)
     {
-        $this->setResponse(
-            $this->sendRequest($schema, $this->prepareQuery($schema)),
-            $schema
-        );
+        $this->result = json_decode($this->sendRequest($schema, $this->prepareQuery($schema)), true);
+
+        $this->pagination($schema);
+
+        $this->setResponse($schema);
     }
 
 }

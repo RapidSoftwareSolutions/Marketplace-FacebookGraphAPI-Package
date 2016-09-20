@@ -9,7 +9,7 @@ namespace FacebookGraphAPIBundle\Utils\Abstracts;
 abstract class FacebookAbstract
 {
     /**
-     * @var mixed
+     * @var array
      */
     protected $response;
     /**
@@ -20,6 +20,10 @@ abstract class FacebookAbstract
      * @var mixed
      */
     protected $httpClient;
+    /**
+     * @var array
+     */
+    protected $result;
 
     /**
      * FacebookAbstract constructor.
@@ -83,6 +87,25 @@ abstract class FacebookAbstract
         }
     }
 
+    public function pagination($schema)
+    {
+        $pagination = $this->result;
+
+        while (isset($pagination['paging']['next'])) {
+            $pagination = json_decode($this->sendRequest($schema, ['url' => $pagination['paging']['next']]), true);
+
+            if (isset($pagination['error'])) {
+                $this->result['error'] = $pagination['error'];
+            } else {
+                if (count($pagination["data"]) > 0) {
+                    $this->result['data'] = array_merge($this->result['data'], $pagination['data']);
+                } else {
+                    break;
+                }
+            }
+        }
+    }
+
     /**
      * @param $schema
      * @param $query
@@ -105,6 +128,7 @@ abstract class FacebookAbstract
             } else {
                 $response = $this->httpClient->{$schema['method']}($query['url'], $headers);
 
+
             }
 
             return $response->getContent();
@@ -112,33 +136,30 @@ abstract class FacebookAbstract
     }
 
     /**
-     * @param $responseMessage
-     *
-     * todo tokin valid/invalid
      * @param $schema
      */
-    public function setResponse($responseMessage, $schema)
+    public function setResponse($schema)
     {
-        if ($responseMessage == $schema['object']['error']) {
-            $this->response = ['callback' => $schema['callback_message']['error'], 'contextWrites' => ['to' => $responseMessage]];
-        } elseif (isset(json_decode($responseMessage)->error)) {
-            $responseMessage = json_decode($responseMessage);
+        if ($this->result == $schema['object']['error']) {
 
-            if (isset($schema['callback_message']['invalid']) && $responseMessage->error->code == 190) {
-                $this->response = ['callback' => $schema['callback_message']['invalid'], 'contextWrites' => ['to' => $responseMessage]];
+            $this->response = ['callback' => $schema['callback_message']['error'], 'contextWrites' => ['to' => json_encode($this->result)]];
+        } elseif (isset($this->result['error'])) {
+            if (isset($schema['callback_message']['invalid']) && $this->result['error']['code'] == 190) {
+
+                $this->response = ['callback' => $schema['callback_message']['invalid'], 'contextWrites' => ['to' =>  json_encode($this->result)]];
             } else {
-                $this->response = ['callback' => $schema['callback_message']['error'], 'contextWrites' => ['to' => $responseMessage]];
+
+                $this->response = ['callback' => $schema['callback_message']['error'], 'contextWrites' => ['to' => json_encode($this->result)]];
             }
         } else {
-            $responseMessage = json_decode($responseMessage);
+            if (isset($this->result['data']['is_valid'])) {
+                if ($this->result['data']['is_valid'] == true) {
 
-            if (isset($responseMessage->data->is_valid)) {
-                if ($responseMessage->data->is_valid == true) {
-                    $this->response = ['callback' => $schema['callback_message']['valid'], 'contextWrites' => ['to' => $responseMessage]];
+                    $this->response = ['callback' => $schema['callback_message']['valid'], 'contextWrites' => ['to' => json_encode($this->result)]];
                 }
             } else {
-                $this->response = ['callback' => $schema['callback_message']['success'], 'contextWrites' => ['to' => $responseMessage]];
 
+                $this->response = ['callback' => $schema['callback_message']['success'], 'contextWrites' => ['to' => json_encode($this->result)]];
             }
         }
     }
@@ -149,11 +170,6 @@ abstract class FacebookAbstract
     public function getResponse()
     {
         return $this->response;
-    }
-
-    public function pagination()
-    {
-
     }
 
 }

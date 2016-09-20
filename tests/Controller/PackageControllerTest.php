@@ -12,85 +12,48 @@ class PackageControllerTest extends WebTestCase
      */
     public $account_token = 'EAAPgIwC9jpcBAHZAEiqHHpNVvGqzPPTE1TbT8Km9GhoMxzPqnnRJS6lAhz2OGgYnA071n14xp08ACSxA6Pe7qXdPuYrOnArrbtXYpchiCY8uzGI0PQ6eZCRiDomqSLhERKLaF3XEVOerbDw4r2ZCL9rG7mvUqAZD';
     /**
-     * @var string
+     * @class createClient
      */
-    public $testAccountToken = 'f1dbbb0bbc1b6aa06a5fdcf6d7072d25';
-    /**
-     * @var string
-     */
-    public $testContentMakeCall = '{"args":{"accountSid":"AC5f37acb24007a320eefb5ffaeb498a78","accountToken":"f1dbbb0bbc1b6aa06a5fdcf6d7072d25","from":"+15005550006\'","to":"+380930000895","url":"http://demo.twilio.com/docs/voice.xml"}}';
-    /**
-     * @var string
-     */
-    public $testContentSendSms = '{"args":{"accountSid":"AC5f37acb24007a320eefb5ffaeb498a78","accountToken":"f1dbbb0bbc1b6aa06a5fdcf6d7072d25","from":"+15005550006","to":"+380930000895","body":"http://demo.twilio.com/docs/voice.xml"}}';
-    /**
-     * @var string
-     */
-    public $testContentSendMms = '{"args":{"accountSid":"AC5f37acb24007a320eefb5ffaeb498a78","accountToken":"f1dbbb0bbc1b6aa06a5fdcf6d7072d25","from":"+15005550006","to":"+380930000895","mediaUrl":"http://demo.twilio.com/docs/voice.xml"}}';
+    public $client;
 
-    public function testMakeCall()
+    /**
+     * @var array
+     */
+    public $metadata;
+
+    public function setUp()
     {
-        $client = static::createClient();
-        $client->request(
-            'POST',
-            '/api/twilio/makeCall',
-            [],
-            [],
-            [],
-            $this->testContentMakeCall
-        );
+        $this->client = static::createClient();
 
-        $response = $client->getResponse();
-        $data = json_decode($response->getContent(), true);
+        self::bootKernel();
 
-        $this->assertJson($response->getContent());
-        $this->assertEquals('success', $data['callback']);
+        $this->metadata = static::$kernel->getContainer()
+            ->getParameter('app_bundle.metadata');
     }
 
-    public function testSendSms()
+    public function testAllFunctionsOnSucceededRequest()
     {
-        $client = static::createClient();
-        $client->request(
-            'POST',
-            '/api/twilio/sendSms',
-            [],
-            [],
-            [],
-            $this->testContentSendSms
-        );
+        foreach ($this->metadata['blocks'] as $key => $blockName)
+        {
+            $this->client->request(
+                'POST',
+                '/api/FacebookGraphAPI/' . $blockName['name']
+            );
 
-        $response = $client->getResponse();
-        $data = json_decode($response->getContent(), true);
+            $response = $this->client->getResponse();
+            //$data = json_decode($response->getContent(), true);
 
-        $this->assertJson($response->getContent());
-        $this->assertEquals('success', $data['callback']);
-    }
+            $this->assertEquals(200 , $response->getStatusCode());
 
-    public function testSendMms()
-    {
-        $client = static::createClient();
-        $client->request(
-            'POST',
-            '/api/twilio/sendMms',
-            [],
-            [],
-            [],
-            $this->testContentSendMms
-        );
-
-        $response = $client->getResponse();
-        $data = json_decode($response->getContent(), true);
-
-        $this->assertJson($response->getContent());
-        $this->assertEquals('success', $data['callback']);
-
+            //$this->assertJson($response->getContent());
+            //$this->assertEquals('success', $data['callback']);
+        }
     }
 
     public function testMetadata()
     {
-        $client = static::createClient();
-        $client->request('GET', '/api/twilio');
-        $response = $client->getResponse();
+        $this->client->request('GET', '/api/FacebookGraphAPI');
+        $response = $this->client->getResponse();
         $data = json_decode($response->getContent(), true);
 
         $this->assertJson($response->getContent());
@@ -99,8 +62,9 @@ class PackageControllerTest extends WebTestCase
         $this->assertArrayHasKey('description', $data);
         $this->assertArrayHasKey('image', $data);
         $this->assertArrayHasKey('repo', $data);
+        $this->assertArrayHasKey('accounts', $data);
         $this->assertArrayHasKey('blocks', $data);
-        $this->assertEquals('Twilio', $data['package']);
+        $this->assertEquals('FacebookGraphAPI', $data['package']);
     }
 
 }

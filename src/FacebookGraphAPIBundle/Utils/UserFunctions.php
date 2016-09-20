@@ -16,10 +16,11 @@ class UserFunctions extends FacebookAbstract
      */
     public function validateUserToken($schema)
     {
-        $this->setResponse(
-            $this->sendRequest($schema, $this->prepareQuery($schema)),
-            $schema
-        );
+        $this->result = json_decode($this->sendRequest($schema, $this->prepareQuery($schema)), true);
+
+        $this->pagination($schema);
+
+        $this->setResponse($schema);
     }
 
     /**
@@ -29,10 +30,11 @@ class UserFunctions extends FacebookAbstract
      */
     public function extendUserToken($schema)
     {
-        $this->setResponse(
-            $this->sendRequest($schema, $this->prepareQuery($schema)),
-            $schema
-        );
+        $this->result = json_decode($this->sendRequest($schema, $this->prepareQuery($schema)), true);
+
+        $this->pagination($schema);
+
+        $this->setResponse($schema);
     }
 
     /**
@@ -42,10 +44,11 @@ class UserFunctions extends FacebookAbstract
      */
     public function getUserAlbums($schema)
     {
-        $this->setResponse(
-            $this->sendRequest($schema, $this->prepareQuery($schema)),
-            $schema
-        );
+        $this->result = json_decode($this->sendRequest($schema, $this->prepareQuery($schema)), true);
+
+        $this->pagination($schema);
+
+        $this->setResponse($schema);
     }
 
     /**
@@ -55,10 +58,11 @@ class UserFunctions extends FacebookAbstract
      */
     public function getUsersFriends($schema)
     {
-        $this->setResponse(
-            $this->sendRequest($schema, $this->prepareQuery($schema)),
-            $schema
-        );
+        $this->result = json_decode($this->sendRequest($schema, $this->prepareQuery($schema)), true);
+
+        $this->pagination($schema);
+
+        $this->setResponse($schema);
     }
 
     /**
@@ -68,10 +72,11 @@ class UserFunctions extends FacebookAbstract
      */
     public function getUsersLikedPages($schema)
     {
-        $this->setResponse(
-            $this->sendRequest($schema, $this->prepareQuery($schema)),
-            $schema
-        );
+        $this->result = json_decode($this->sendRequest($schema, $this->prepareQuery($schema)), true);
+
+        $this->pagination($schema);
+
+        $this->setResponse($schema);
     }
 
 }

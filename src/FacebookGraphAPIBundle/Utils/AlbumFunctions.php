@@ -17,10 +17,11 @@ class AlbumFunctions extends FacebookAbstract
      */
     public function getAlbum($schema)
     {
-        $this->setResponse(
-            $this->sendRequest($schema, $this->prepareQuery($schema)),
-            $schema
-        );
+        $this->result = json_decode($this->sendRequest($schema, $this->prepareQuery($schema)), true);
+
+        $this->pagination($schema);
+
+        $this->setResponse($schema);
     }
 
     /**
@@ -30,10 +31,11 @@ class AlbumFunctions extends FacebookAbstract
      */
     public function createAlbum($schema)
     {
-        $this->setResponse(
-            $this->sendRequest($schema, $this->prepareQuery($schema)),
-            $schema
-        );
+        $this->result = json_decode($this->sendRequest($schema, $this->prepareQuery($schema)), true);
+
+        $this->pagination($schema);
+
+        $this->setResponse($schema);
     }
 
     /**
@@ -43,10 +45,11 @@ class AlbumFunctions extends FacebookAbstract
      */
     public function getAlbumPhotos($schema)
     {
-        $this->setResponse(
-            $this->sendRequest($schema, $this->prepareQuery($schema)),
-            $schema
-        );
+        $this->result = json_decode($this->sendRequest($schema, $this->prepareQuery($schema)), true);
+
+        $this->pagination($schema);
+
+        $this->setResponse($schema);
     }
 
     /**
@@ -56,10 +59,11 @@ class AlbumFunctions extends FacebookAbstract
      */
     public function addPhotoToAlbum($schema)
     {
-        $this->setResponse(
-            $this->sendRequest($schema, $this->prepareQuery($schema)),
-            $schema
-        );
+        $this->result = json_decode($this->sendRequest($schema, $this->prepareQuery($schema)), true);
+
+        $this->pagination($schema);
+
+        $this->setResponse($schema);
     }
 
     /**
@@ -69,10 +73,11 @@ class AlbumFunctions extends FacebookAbstract
      */
     public function getPhoto($schema)
     {
-        $this->setResponse(
-            $this->sendRequest($schema, $this->prepareQuery($schema)),
-            $schema
-        );
+        $this->result = json_decode($this->sendRequest($schema, $this->prepareQuery($schema)), true);
+
+        $this->pagination($schema);
+
+        $this->setResponse($schema);
     }
 
 }
