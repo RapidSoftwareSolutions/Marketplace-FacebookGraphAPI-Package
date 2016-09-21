@@ -8,10 +8,6 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 class PackageControllerTest extends WebTestCase
 {
     /**
-     * @var string
-     */
-    public $account_token = 'EAAPgIwC9jpcBAHZAEiqHHpNVvGqzPPTE1TbT8Km9GhoMxzPqnnRJS6lAhz2OGgYnA071n14xp08ACSxA6Pe7qXdPuYrOnArrbtXYpchiCY8uzGI0PQ6eZCRiDomqSLhERKLaF3XEVOerbDw4r2ZCL9rG7mvUqAZD';
-    /**
      * @class createClient
      */
     public $client;

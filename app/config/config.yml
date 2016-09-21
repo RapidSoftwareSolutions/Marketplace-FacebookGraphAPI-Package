@@ -1,3 +1,5 @@
 framework:
     secret: 54534gegfdb3g43f34vg43g3vvdfbdf344g
     test: ~
+sensio_buzz:
+    client_timeout: 5

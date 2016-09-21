@@ -59,30 +59,38 @@ abstract class FacebookAbstract
         $query = [];
 
         foreach ($schema['args'] as $facebookValue => $rapidApiValue) {
-            if (isset($this->parameters[$rapidApiValue])) {
+            if (isset($this->parameters[$rapidApiValue]) && $this->parameters[$rapidApiValue] != '') {
+
                 $query[$facebookValue] = $this->parameters[$rapidApiValue];
             }
         }
 
         if ($schema['object']['optimal'] == false) {
             if ($schema['args_in_body']) {
+
                 return ['url' => $schema['url'] . $schema['object']['default'] . $schema['uri'], 'args' => $query];
             } else {
+
                 return ['url' => $schema['url'] . $schema['object']['default'] . $schema['uri'] . http_build_query($query, '', '&')];
             }
         } elseif (isset($this->parameters[$schema['object']['optimal']])) {
             if ($schema['args_in_body']) {
+
                 return ['url' => $schema['url'] . $this->parameters[$schema['object']['optimal']] . $schema['uri'], 'args' => $query];
             } else {
+
                 return ['url' => $schema['url'] . $this->parameters[$schema['object']['optimal']] . $schema['uri'] . http_build_query($query, '', '&')];
             }
         } elseif ($schema['object']['default'] != false) {
             if ($schema['args_in_body']) {
+
                 return ['url' => $schema['url'] . $schema['object']['default'] . $schema['uri'], 'args' => $query];
             } else {
+
                 return ['url' => $schema['url'] . $schema['object']['default'] . $schema['uri'] . http_build_query($query, '', '&')];
             }
         } else {
+
             return $schema['object']['error'];
         }
     }
@@ -92,14 +100,17 @@ abstract class FacebookAbstract
         $pagination = $this->result;
 
         while (isset($pagination['paging']['next'])) {
-            $pagination = json_decode($this->sendRequest($schema, ['url' => $pagination['paging']['next']]), true);
 
+            $pagination = json_decode($this->sendRequest($schema, ['url' => $pagination['paging']['next']]), true);
             if (isset($pagination['error'])) {
+
                 $this->result['error'] = $pagination['error'];
             } else {
                 if (count($pagination["data"]) > 0) {
+
                     $this->result['data'] = array_merge($this->result['data'], $pagination['data']);
                 } else {
+
                     break;
                 }
             }
@@ -118,17 +129,17 @@ abstract class FacebookAbstract
 
             return $schema['object']['error'];
         } else {
+
             $headers = array(
                 'Content-Type' => 'application/json',
             );
 
             if ($schema['args_in_body']) {
+
                 $response = $this->httpClient->{$schema['method']}($query['url'], $headers, $query['args']);
-
             } else {
+
                 $response = $this->httpClient->{$schema['method']}($query['url'], $headers);
-
-
             }
 
             return $response->getContent();
@@ -146,7 +157,7 @@ abstract class FacebookAbstract
         } elseif (isset($this->result['error'])) {
             if (isset($schema['callback_message']['invalid']) && $this->result['error']['code'] == 190) {
 
-                $this->response = ['callback' => $schema['callback_message']['invalid'], 'contextWrites' => ['to' =>  json_encode($this->result)]];
+                $this->response = ['callback' => $schema['callback_message']['invalid'], 'contextWrites' => ['to' => json_encode($this->result)]];
             } else {
 
                 $this->response = ['callback' => $schema['callback_message']['error'], 'contextWrites' => ['to' => json_encode($this->result)]];

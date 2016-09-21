@@ -501,7 +501,6 @@ parameters:
     app_bundle.facebookUrl: "https://graph.facebook.com/v2.7/"
     app_bundle.access_token: "access_token"
     app_bundle.default_profile: "me"
-    app_bundle.pagination_limit: 150
     app_bundle.validate_user_token:
       url: "%app_bundle.facebookUrl%"
       uri: "debug_token?"
@@ -536,7 +535,7 @@ parameters:
         fb_exchange_token: "%app_bundle.access_token%"
     app_bundle.get_user_albums:
       url: "%app_bundle.facebookUrl%"
-      uri: "/albums?"
+      uri: "/albums?limit=250&"
       method: "get"
       args_in_body: false
       object:
@@ -561,11 +560,10 @@ parameters:
         error: "error"
         success: "success"
       args:
-        limit: "limit?"
         access_token: "%app_bundle.access_token%"
     app_bundle.get_users_liked_pages:
       url: "%app_bundle.facebookUrl%"
-      uri: "/likes?"
+      uri: "/likes?limit=250&"
       method: "get"
       args_in_body: false
       object:
@@ -621,7 +619,7 @@ parameters:
         access_token: "%app_bundle.access_token%"
     app_bundle.get_likes:
       url: "%app_bundle.facebookUrl%"
-      uri: "/likes?"
+      uri: "/likes?limit=250&"
       method: "get"
       args_in_body: false
       object:
@@ -663,7 +661,7 @@ parameters:
         access_token: "%app_bundle.access_token%"
     app_bundle.get_users_feed:
       url: "%app_bundle.facebookUrl%"
-      uri: "/feed?"
+      uri: "/feed?limit=250&"
       method: "get"
       args_in_body: false
       object:
@@ -711,7 +709,7 @@ parameters:
         access_token: "%app_bundle.access_token%"
     app_bundle.get_comments:
       url: "%app_bundle.facebookUrl%"
-      uri: "/comments?"
+      uri: "/comments?limit=250&"
       method: "get"
       args_in_body: false
       object:
@@ -805,7 +803,7 @@ parameters:
         access_token: "%app_bundle.access_token%"
     app_bundle.get_album_photos:
       url: "%app_bundle.facebookUrl%"
-      uri: "/photos?"
+      uri: "/photos?limit=250&"
       method: "get"
       args_in_body: false
       object:

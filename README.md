@@ -1,59 +1,691 @@
 # FacebookGraphAPI Package
 This is the main package to interact with Facebook users.
+* Domain: facebook.com
+* Credentials: access_token
 
-## How to get `access_token`:
+## How to get credentials: 
  0. [Go to the Facebook online console](https://developers.facebook.com/tools/explorer/145634995501895/?method=POST&path=1417308701%2Ffeed&version=v2.7&message=Just%20testing%20FB%20API%20package)
  1. Press the get token button.
- 
-## /api/FacebookGraphAPI/validateUserToken
-Make phone calls
 
-| Field            | Type     | Description  |
-| -------------    |-------------     | -----|
-| `access_token`         |string  | Access token obtained from Facebook which should be validated. |
+## TOC: 
+* [validateUserToken](#validateUserToken)
+* [extendUserToken](#extendUserToken)
+* [getUserAlbums](#getUserAlbums)
+* [getUsersFriends](#getUsersFriends)
+* [getUsersLikedPages](#getUsersLikedPages)
+* [getCurrentProfile](#getCurrentProfile)
+* [getProfile](#getProfile)
+* [getProfilePicture](#getProfilePicture)
+* [getLikes](#getLikes)
+* [addLike](#addLike)
+* [deleteLike](#deleteLike)
+* [getUsersFeed](#getUsersFeed)
+* [addFeedPost](#addFeedPost)
+* [deleteFeedPost](#deleteFeedPost)
+* [getComments](#getComments)
+* [addComment](#addComment)
+* [updateComment](#updateComment)
+* [deleteComment](#deleteComment)
+* [getAlbum](#getAlbum)
+* [createAlbum](#createAlbum)
+* [getAlbumPhotos](#getAlbumPhotos)
+* [addPhotoToAlbum](#addPhotoToAlbum)
+* [getPhoto](#getPhoto)
+ 
+<a name="validateUserToken"/>
+## FacebookGraphAPI.validateUserToken
+Method description
+
+| Field       | Type  | Description
+|-------------|-------|----------
+| access_token| String| Access token obtained from Facebook which should be validated.
 
 #### Request example
 ```json
-{
-		"access_token": "XXXX"
+{	"access_token": "..."
 }
 ```
 #### Response example
 ```json
-{  
-   "callback":"valid",
-   "contextWrites":{  
-      "to":"{\u0022data\u0022:{\u0022app_id\u0022:\u00221090865871031959\u0022,\u0022application\u0022:\u0022test\u0022,\u0022expires_at\u0022:1479475501,\u0022is_valid\u0022:true,\u0022issued_at\u0022:1474291501,\u0022scopes\u0022:[\u0022user_birthday\u0022,\u0022user_religion_politics\u0022,\u0022user_relationships\u0022,\u0022user_relationship_details\u0022,\u0022user_hometown\u0022,\u0022user_location\u0022,\u0022user_likes\u0022,\u0022user_education_history\u0022,\u0022user_work_history\u0022,\u0022user_website\u0022,\u0022user_photos\u0022,\u0022user_videos\u0022,\u0022user_friends\u0022,\u0022user_about_me\u0022,\u0022user_status\u0022,\u0022user_games_activity\u0022,\u0022user_tagged_places\u0022,\u0022user_posts\u0022,\u0022email\u0022,\u0022read_insights\u0022,\u0022publish_actions\u0022,\u0022read_audience_network_insights\u0022,\u0022read_custom_friendlists\u0022,\u0022user_actions.music\u0022,\u0022user_actions.video\u0022,\u0022user_actions.news\u0022,\u0022user_actions.fitness\u0022,\u0022user_actions.books\u0022,\u0022public_profile\u0022],\u0022user_id\u0022:\u0022640657879442008\u0022}}"
-   }
+{
+	"callback":"success",
+	"contextWrites":{
+		"#":{
+			"to":"..."
+		}
+	}
 }
 ```
 
-## Errors
-| Error            | Description     |
-| -------------    |-------------     |
-| `Credentials are required to create a Client`     | Provide accountSid and accountToken to establish connection properly. |
-| `[HTTP 404] Unable to create record: The requested resource /2010-04-01/Accounts/AC5f37acb25ffaeb498a78/Messages.json was not found"`     | Provide correct accountSid. |
-| `[HTTP 401] Unable to create record: Authenticate`     | Provide correct accountToken. |
-| `[HTTP 400] Unable to create record: A "From" phone number is required.`     | One of  a mandatory field is incorrect. |
-| `[HTTP 400] Unable to create record: Method is not valid: TEST`     | One of an additional field is incorrect. |
+<a name="extendUserToken"/>
+## FacebookGraphAPI.extendUserToken
+Method description
 
-#### Request example with error
+| Field       | Type  | Description
+|-------------|-------|----------
+| access_token| String| Access token obtained from Facebook.
+| app_id      | String| The App ID.
+| app_secret  | String| The app's app secret.
+
+#### Request example
 ```json
-{
-	"accountSid": "XXXX",
-	"accountToken": "XXXX",
-	"from": "+15005550006",
-	"to": "+15005260006",
-	"url": "http://demo.twilio.com/docs/voice.xml",
-	"method": "test"
+{	"access_token": "...",
+	"app_id": "...",
+	"app_secret": "..."
 }
 ```
-#### Response
+#### Response example
 ```json
 {
-"callback":"error",
-"contextWrites":{
-    "to":"[HTTP 400] Unable to create record: Method is not valid: TEST"
-    }
+	"callback":"success",
+	"contextWrites":{
+		"#":{
+			"to":"..."
+		}
+	}
 }
 ```
+
+<a name="getUserAlbums"/>
+## FacebookGraphAPI.getUserAlbums
+Method description
+
+| Field       | Type  | Description
+|-------------|-------|----------
+| access_token| String| Access token obtained from Facebook.
+| prodile_id  | String| [opt, =me], Facebook profile id.
+
+#### Request example
+```json
+{	"access_token": "...",
+	"prodile_id": "..."
+}
+```
+#### Response example
+```json
+{
+	"callback":"success",
+	"contextWrites":{
+		"#":{
+			"to":"..."
+		}
+	}
+}
+```
+
+<a name="getUsersFriends"/>
+## FacebookGraphAPI.getUsersFriends
+Method description
+
+| Field       | Type  | Description
+|-------------|-------|----------
+| access_token| String| Access token obtained from Facebook.
+| user_id     | String| [opt, =me], Facebook user id.
+
+#### Request example
+```json
+{	"access_token": "...",
+	"user_id": "..."
+}
+```
+#### Response example
+```json
+{
+	"callback":"success",
+	"contextWrites":{
+		"#":{
+			"to":"..."
+		}
+	}
+}
+```
+
+<a name="getUsersLikedPages"/>
+## FacebookGraphAPI.getUsersLikedPages
+Method description
+
+| Field       | Type  | Description
+|-------------|-------|----------
+| access_token| String| Access token obtained from Facebook.
+| user_id     | String| [opt, =me], Facebook user id.
+
+#### Request example
+```json
+{	"access_token": "...",
+	"user_id": "..."
+}
+```
+#### Response example
+```json
+{
+	"callback":"success",
+	"contextWrites":{
+		"#":{
+			"to":"..."
+		}
+	}
+}
+```
+
+<a name="getCurrentProfile"/>
+## FacebookGraphAPI.getCurrentProfile
+Method description
+
+| Field       | Type  | Description
+|-------------|-------|----------
+| access_token| String| Access token obtained from Facebook.
+
+#### Request example
+```json
+{	"access_token": "..."
+}
+```
+#### Response example
+```json
+{
+	"callback":"success",
+	"contextWrites":{
+		"#":{
+			"to":"..."
+		}
+	}
+}
+```
+
+<a name="getProfile"/>
+## FacebookGraphAPI.getProfile
+Method description
+
+| Field       | Type  | Description
+|-------------|-------|----------
+| access_token| String| Access token obtained from Facebook.
+| profile_id  | String| [opt, =me], Facebook profile id.
+
+#### Request example
+```json
+{	"access_token": "...",
+	"profile_id": "..."
+}
+```
+#### Response example
+```json
+{
+	"callback":"success",
+	"contextWrites":{
+		"#":{
+			"to":"..."
+		}
+	}
+}
+```
+
+<a name="getProfilePicture"/>
+## FacebookGraphAPI.getProfilePicture
+Method description
+
+| Field       | Type  | Description
+|-------------|-------|----------
+| access_token| String| Access token obtained from Facebook.
+| profile_id  | String| [opt, =me], Facebook profile id.
+
+#### Request example
+```json
+{	"access_token": "...",
+	"profile_id": "..."
+}
+```
+#### Response example
+```json
+{
+	"callback":"success",
+	"contextWrites":{
+		"#":{
+			"to":"..."
+		}
+	}
+}
+```
+
+<a name="getLikes"/>
+## FacebookGraphAPI.getLikes
+Method description
+
+| Field       | Type  | Description
+|-------------|-------|----------
+| access_token| String| Access token obtained from Facebook.
+| object_id   | String| Facebook object id.
+
+#### Request example
+```json
+{	"access_token": "...",
+	"object_id": "..."
+}
+```
+#### Response example
+```json
+{
+	"callback":"success",
+	"contextWrites":{
+		"#":{
+			"to":"..."
+		}
+	}
+}
+```
+
+<a name="addLike"/>
+## FacebookGraphAPI.addLike
+Method description
+
+| Field       | Type  | Description
+|-------------|-------|----------
+| access_token| String| Access token obtained from Facebook.
+| object_id   | String| Facebook object id.
+
+#### Request example
+```json
+{	"access_token": "...",
+	"object_id": "..."
+}
+```
+#### Response example
+```json
+{
+	"callback":"success",
+	"contextWrites":{
+		"#":{
+			"to":"..."
+		}
+	}
+}
+```
+
+<a name="deleteLike"/>
+## FacebookGraphAPI.deleteLike
+Method description
+
+| Field       | Type  | Description
+|-------------|-------|----------
+| access_token| String| Access token obtained from Facebook.
+| object_id   | String| Facebook object id.
+
+#### Request example
+```json
+{	"access_token": "...",
+	"object_id": "..."
+}
+```
+#### Response example
+```json
+{
+	"callback":"success",
+	"contextWrites":{
+		"#":{
+			"to":"..."
+		}
+	}
+}
+```
+
+<a name="getUsersFeed"/>
+## FacebookGraphAPI.getUsersFeed
+Method description
+
+| Field       | Type  | Description
+|-------------|-------|----------
+| access_token| String| Access token obtained from Facebook.
+| user_id     | String| [opt, =me], Facebook user id.
+
+#### Request example
+```json
+{	"access_token": "...",
+	"user_id": "..."
+}
+```
+#### Response example
+```json
+{
+	"callback":"success",
+	"contextWrites":{
+		"#":{
+			"to":"..."
+		}
+	}
+}
+```
+
+<a name="addFeedPost"/>
+## FacebookGraphAPI.addFeedPost
+Method description
+
+| Field            | Type  | Description
+|------------------|-------|----------
+| access_token     | String| Access token obtained from Facebook.
+| message          | String| Optimal: The main body of the post, otherwise called the status message. Either link, place, or message must be supplied.
+| link             | String| Optimal: The URL of a link to attach to the post. Either link, place, or message must be supplied. Additional fields associated with link are shown below.
+| place            | String| Optimal: Page ID of a location associated with this post. Either link, place, or message must be supplied..
+| tags             | String| Optimal: Comma-separated list of user IDs of people tagged in this post. You cannot specify this field without also specifying a place.
+| privacy          | String| Optimal: Determines the privacy settings of the post. If not supplied, this defaults to the privacy level granted to the app in the Login Dialog. This field cannot be used to set a more open privacy setting than the one granted.
+| object_attachment| String| Optimal: Facebook ID for an existing picture in the person's photo albums to use as the thumbnail image. They must be the owner of the photo, and the photo cannot be part of a message attachment.
+
+#### Request example
+```json
+{	"access_token": "...",
+	"message": "...",
+	"link": "...",
+	"place": "...",
+	"tags": "...",
+	"privacy": "...",
+	"object_attachment": "..."
+}
+```
+#### Response example
+```json
+{
+	"callback":"success",
+	"contextWrites":{
+		"#":{
+			"to":"..."
+		}
+	}
+}
+```
+
+<a name="deleteFeedPost"/>
+## FacebookGraphAPI.deleteFeedPost
+Method description
+
+| Field       | Type  | Description
+|-------------|-------|----------
+| access_token| String| Access token obtained from Facebook.
+| post_id     | String| Facebook post id.
+
+#### Request example
+```json
+{	"access_token": "...",
+	"post_id": "..."
+}
+```
+#### Response example
+```json
+{
+	"callback":"success",
+	"contextWrites":{
+		"#":{
+			"to":"..."
+		}
+	}
+}
+```
+
+<a name="getComments"/>
+## FacebookGraphAPI.getComments
+Method description
+
+| Field       | Type  | Description
+|-------------|-------|----------
+| access_token| String| Access token obtained from Facebook.
+| object_id   | String| Facebook object id.
+
+#### Request example
+```json
+{	"access_token": "...",
+	"object_id": "..."
+}
+```
+#### Response example
+```json
+{
+	"callback":"success",
+	"contextWrites":{
+		"#":{
+			"to":"..."
+		}
+	}
+}
+```
+
+<a name="addComment"/>
+## FacebookGraphAPI.addComment
+Method description
+
+| Field         | Type  | Description
+|---------------|-------|----------
+| access_token  | String| Access token obtained from Facebook.
+| object_id     | String| Facebook object id.
+| message       | String| Optimal: The comment text
+| attachment_id | String| Optimal: An optional ID of a unpublished photo uploaded to Facebook to include as a photo comment. 
+| attachment_url| String| Optimal: The URL of an image to include as a photo comment.
+
+#### Request example
+```json
+{	"access_token": "...",
+	"object_id": "...",
+	"message": "...",
+	"attachment_id": "...",
+	"attachment_url": "..."
+}
+```
+#### Response example
+```json
+{
+	"callback":"success",
+	"contextWrites":{
+		"#":{
+			"to":"..."
+		}
+	}
+}
+```
+
+<a name="updateComment"/>
+## FacebookGraphAPI.updateComment
+Method description
+
+| Field       | Type  | Description
+|-------------|-------|----------
+| access_token| String| Access token obtained from Facebook.
+| comment_id  | String| Facebook comment id.
+| message     | String| The updated comment text.
+| is_hidden   | String| Whether this comment is hidden or visible. The original poster can still see the comment, along with the page admin and anyone else tagged in the comment
+
+#### Request example
+```json
+{	"access_token": "...",
+	"comment_id": "...",
+	"message": "...",
+	"is_hidden": "..."
+}
+```
+#### Response example
+```json
+{
+	"callback":"success",
+	"contextWrites":{
+		"#":{
+			"to":"..."
+		}
+	}
+}
+```
+
+<a name="deleteComment"/>
+## FacebookGraphAPI.deleteComment
+Method description
+
+| Field       | Type  | Description
+|-------------|-------|----------
+| access_token| String| Access token obtained from Facebook.
+| comment_id  | String| Facebook comment id.
+
+#### Request example
+```json
+{	"access_token": "...",
+	"comment_id": "..."
+}
+```
+#### Response example
+```json
+{
+	"callback":"success",
+	"contextWrites":{
+		"#":{
+			"to":"..."
+		}
+	}
+}
+```
+
+<a name="getAlbum"/>
+## FacebookGraphAPI.getAlbum
+Method description
+
+| Field       | Type  | Description
+|-------------|-------|----------
+| access_token| String| Access token obtained from Facebook.
+| album_id    | String| Facebook album id.
+
+#### Request example
+```json
+{	"access_token": "...",
+	"album_id": "..."
+}
+```
+#### Response example
+```json
+{
+	"callback":"success",
+	"contextWrites":{
+		"#":{
+			"to":"..."
+		}
+	}
+}
+```
+
+<a name="createAlbum"/>
+## FacebookGraphAPI.createAlbum
+Method description
+
+| Field       | Type  | Description
+|-------------|-------|----------
+| access_token| String| Access token obtained from Facebook.
+| profile_id  | String| Facebook profile id.
+| name        | String| The title of the album
+| location    | String| Optimal: A text location of the album for non-page locations.
+| message     | String| Optimal: The album's caption. This appears below the title of the album in the album view.
+| place       | String| Optimal: The ID of a location page to tag the album with.
+| privacy     | String| Optimal: The privacy of the album.
+
+#### Request example
+```json
+{	"access_token": "...",
+	"profile_id": "...",
+	"name": "...",
+	"location": "...",
+	"message": "...",
+	"place": "...",
+	"privacy": "..."
+}
+```
+#### Response example
+```json
+{
+	"callback":"success",
+	"contextWrites":{
+		"#":{
+			"to":"..."
+		}
+	}
+}
+```
+
+<a name="getAlbumPhotos"/>
+## FacebookGraphAPI.getAlbumPhotos
+Method description
+
+| Field       | Type  | Description
+|-------------|-------|----------
+| access_token| String| Access token obtained from Facebook.
+| album_id    | String| Facebook album id.
+
+#### Request example
+```json
+{	"access_token": "...",
+	"album_id": "..."
+}
+```
+#### Response example
+```json
+{
+	"callback":"success",
+	"contextWrites":{
+		"#":{
+			"to":"..."
+		}
+	}
+}
+```
+
+<a name="addPhotoToAlbum"/>
+## FacebookGraphAPI.addPhotoToAlbum
+Method description
+
+| Field       | Type  | Description
+|-------------|-------|----------
+| access_token| String| Access token obtained from Facebook.
+| album_id    | String| Facebook album id.
+| photo       | String| The URL of a photo that is already uploaded to the internet.
+| message     | String| Optimal: The description of the photo, used as the accompanying status message in any feed story.
+| place       | String| Optimal: Page ID of a place associated with the Photo.
+| no_story    | String| Optimal: If set to true, this will suppress the feed story that is automatically generated on a person's profile when they upload a photo using your app.
+
+#### Request example
+```json
+{	"access_token": "...",
+	"album_id": "...",
+	"photo": "...",
+	"message": "...",
+	"place": "...",
+	"no_story": "..."
+}
+```
+#### Response example
+```json
+{
+	"callback":"success",
+	"contextWrites":{
+		"#":{
+			"to":"..."
+		}
+	}
+}
+```
+
+<a name="getPhoto"/>
+## FacebookGraphAPI.getPhoto
+Method description
+
+| Field       | Type  | Description
+|-------------|-------|----------
+| access_token| String| Access token obtained from Facebook.
+| photo_id    | String| Facebook photo id.
+
+#### Request example
+```json
+{	"access_token": "...",
+	"photo_id": "..."
+}
+```
+#### Response example
+```json
+{
+	"callback":"success",
+	"contextWrites":{
+		"#":{
+			"to":"..."
+		}
+	}
+}
+```
+
