@@ -73,7 +73,7 @@ abstract class FacebookAbstract
 
                 return ['url' => $schema['url'] . $schema['object']['default'] . $schema['uri'] . http_build_query($query, '', '&')];
             }
-        } elseif (isset($this->parameters[$schema['object']['optimal']])) {
+        } elseif (isset($this->parameters[$schema['object']['optimal']]) && $this->parameters[$schema['object']['optimal']] != '') {
             if ($schema['args_in_body']) {
 
                 return ['url' => $schema['url'] . $this->parameters[$schema['object']['optimal']] . $schema['uri'], 'args' => $query];
