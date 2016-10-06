@@ -38,7 +38,7 @@ Method description
 
 | Field       | Type  | Description
 |-------------|-------|----------
-| access_token| String| Access token obtained from Facebook which should be validated.
+| access_token| credentials| Access token obtained from Facebook which should be validated.
 
 #### Request example
 ```json
@@ -118,7 +118,7 @@ Method description
 
 | Field       | Type  | Description
 |-------------|-------|----------
-| access_token| String| Access token obtained from Facebook.
+| access_token| credentials| Access token obtained from Facebook.
 | app_id      | String| The App ID.
 | app_secret  | String| The app's app secret.
 
@@ -152,7 +152,7 @@ Method description
 
 | Field       | Type  | Description
 |-------------|-------|----------
-| access_token| String| Access token obtained from Facebook.
+| access_token| credentials| Access token obtained from Facebook.
 | prodile_id  | String| [opt, =me], Facebook profile id.
 
 #### Request example
@@ -203,7 +203,7 @@ Method description
 
 | Field       | Type  | Description
 |-------------|-------|----------
-| access_token| String| Access token obtained from Facebook.
+| access_token| credentials| Access token obtained from Facebook.
 | user_id     | String| [opt, =me], Facebook user id.
 
 #### Request example
@@ -236,7 +236,7 @@ Method description
 
 | Field       | Type  | Description
 |-------------|-------|----------
-| access_token| String| Access token obtained from Facebook.
+| access_token| credentials| Access token obtained from Facebook.
 | user_id     | String| [opt, =me], Facebook user id.
 
 #### Request example
@@ -278,7 +278,7 @@ Method description
 
 | Field       | Type  | Description
 |-------------|-------|----------
-| access_token| String| Access token obtained from Facebook.
+| access_token| credentials| Access token obtained from Facebook.
 
 #### Request example
 ```json
@@ -306,7 +306,7 @@ Method description
 
 | Field       | Type  | Description
 |-------------|-------|----------
-| access_token| String| Access token obtained from Facebook.
+| access_token| credentials| Access token obtained from Facebook.
 | profile_id  | String| [opt, =me], Facebook profile id.
 
 #### Request example
@@ -336,7 +336,7 @@ Method description
 
 | Field       | Type  | Description
 |-------------|-------|----------
-| access_token| String| Access token obtained from Facebook.
+| access_token| credentials| Access token obtained from Facebook.
 | profile_id  | String| [opt, =me], Facebook profile id.
 
 #### Request example
@@ -368,7 +368,7 @@ Method description
 
 | Field       | Type  | Description
 |-------------|-------|----------
-| access_token| String| Access token obtained from Facebook.
+| access_token| credentials| Access token obtained from Facebook.
 | object_id   | String| Facebook object id.
 
 #### Request example
@@ -408,7 +408,7 @@ Method description
 
 | Field       | Type  | Description
 |-------------|-------|----------
-| access_token| String| Access token obtained from Facebook.
+| access_token| credentials| Access token obtained from Facebook.
 | object_id   | String| Facebook object id.
 
 #### Request example
@@ -437,7 +437,7 @@ Method description
 
 | Field       | Type  | Description
 |-------------|-------|----------
-| access_token| String| Access token obtained from Facebook.
+| access_token| credentials| Access token obtained from Facebook.
 | object_id   | String| Facebook object id.
 
 #### Request example
@@ -466,7 +466,7 @@ Method description
 
 | Field       | Type  | Description
 |-------------|-------|----------
-| access_token| String| Access token obtained from Facebook.
+| access_token| credentials| Access token obtained from Facebook.
 | user_id     | String| [opt, =me], Facebook user id.
 
 #### Request example
@@ -520,7 +520,7 @@ Method description
 
 | Field            | Type  | Description
 |------------------|-------|----------
-| access_token     | String| Access token obtained from Facebook.
+| access_token     | credentials| Access token obtained from Facebook.
 | message          | String| Optimal: The main body of the post, otherwise called the status message. Either link, place, or message must be supplied.
 | link             | String| Optimal: The URL of a link to attach to the post. Either link, place, or message must be supplied. Additional fields associated with link are shown below.
 | place            | String| Optimal: Page ID of a location associated with this post. Either link, place, or message must be supplied..
@@ -559,7 +559,7 @@ Method description
 
 | Field       | Type  | Description
 |-------------|-------|----------
-| access_token| String| Access token obtained from Facebook.
+| access_token| credentials| Access token obtained from Facebook.
 | post_id     | String| Facebook post id.
 
 #### Request example
@@ -588,7 +588,7 @@ Method description
 
 | Field       | Type  | Description
 |-------------|-------|----------
-| access_token| String| Access token obtained from Facebook.
+| access_token| credentials| Access token obtained from Facebook.
 | object_id   | String| Facebook object id.
 
 #### Request example
@@ -643,7 +643,7 @@ Method description
 
 | Field         | Type  | Description
 |---------------|-------|----------
-| access_token  | String| Access token obtained from Facebook.
+| access_token  | credentials| Access token obtained from Facebook.
 | object_id     | String| Facebook object id.
 | message       | String| Optimal: The comment text
 | attachment_id | String| Optimal: An optional ID of a unpublished photo uploaded to Facebook to include as a photo comment. 
@@ -678,7 +678,7 @@ Method description
 
 | Field       | Type  | Description
 |-------------|-------|----------
-| access_token| String| Access token obtained from Facebook.
+| access_token| credentials| Access token obtained from Facebook.
 | comment_id  | String| Facebook comment id.
 | message     | String| The updated comment text.
 | is_hidden   | String| Whether this comment is hidden or visible. The original poster can still see the comment, along with the page admin and anyone else tagged in the comment
@@ -711,7 +711,7 @@ Method description
 
 | Field       | Type  | Description
 |-------------|-------|----------
-| access_token| String| Access token obtained from Facebook.
+| access_token| credentials| Access token obtained from Facebook.
 | comment_id  | String| Facebook comment id.
 
 #### Request example
@@ -740,7 +740,7 @@ Method description
 
 | Field       | Type  | Description
 |-------------|-------|----------
-| access_token| String| Access token obtained from Facebook.
+| access_token| credentials| Access token obtained from Facebook.
 | album_id    | String| Facebook album id.
 
 #### Request example
@@ -771,7 +771,7 @@ Method description
 
 | Field       | Type  | Description
 |-------------|-------|----------
-| access_token| String| Access token obtained from Facebook.
+| access_token| credentials| Access token obtained from Facebook.
 | profile_id  | String| Facebook profile id.
 | name        | String| The title of the album
 | location    | String| Optimal: A text location of the album for non-page locations.
@@ -810,7 +810,7 @@ Method description
 
 | Field       | Type  | Description
 |-------------|-------|----------
-| access_token| String| Access token obtained from Facebook.
+| access_token| credentials| Access token obtained from Facebook.
 | album_id    | String| Facebook album id.
 
 #### Request example
@@ -855,7 +855,7 @@ Method description
 
 | Field       | Type  | Description
 |-------------|-------|----------
-| access_token| String| Access token obtained from Facebook.
+| access_token| credentials| Access token obtained from Facebook.
 | album_id    | String| Facebook album id.
 | photo       | String| The URL of a photo that is already uploaded to the internet.
 | message     | String| Optimal: The description of the photo, used as the accompanying status message in any feed story.
@@ -892,7 +892,7 @@ Method description
 
 | Field       | Type  | Description
 |-------------|-------|----------
-| access_token| String| Access token obtained from Facebook.
+| access_token| credentials| Access token obtained from Facebook.
 | photo_id    | String| Facebook photo id.
 
 #### Request example
