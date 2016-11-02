@@ -17,11 +17,21 @@ class AlbumFunctions extends FacebookAbstract
      */
     public function getAlbum($schema)
     {
-        $this->result = json_decode($this->sendRequest($schema, $this->prepareQuery($schema)), true);
+        $response = $this->sendRequest($schema, $this->prepareQuery($schema));
 
-        $this->pagination($schema);
+        if($response == $schema['object']['error']){
 
-        $this->setResponse($schema);
+            $this->result = $response;
+
+            $this->setResponse($schema);
+        }else{
+
+            $this->result = json_decode($response, true);
+
+            $this->pagination($schema);
+
+            $this->setResponse($schema);
+        }
     }
 
     /**
@@ -31,11 +41,21 @@ class AlbumFunctions extends FacebookAbstract
      */
     public function createAlbum($schema)
     {
-        $this->result = json_decode($this->sendRequest($schema, $this->prepareQuery($schema)), true);
+        $response = $this->sendRequest($schema, $this->prepareQuery($schema));
 
-        $this->pagination($schema);
+        if($response == $schema['object']['error']){
 
-        $this->setResponse($schema);
+            $this->result = $response;
+
+            $this->setResponse($schema);
+        }else{
+
+            $this->result = json_decode($response, true);
+
+            $this->pagination($schema);
+
+            $this->setResponse($schema);
+        }
     }
 
     /**
@@ -45,11 +65,21 @@ class AlbumFunctions extends FacebookAbstract
      */
     public function getAlbumPhotos($schema)
     {
-        $this->result = json_decode($this->sendRequest($schema, $this->prepareQuery($schema)), true);
+        $response = $this->sendRequest($schema, $this->prepareQuery($schema));
 
-        $this->pagination($schema);
+        if($response == $schema['object']['error']){
 
-        $this->setResponse($schema);
+            $this->result = $response;
+
+            $this->setResponse($schema);
+        }else{
+
+            $this->result = json_decode($response, true);
+
+            $this->pagination($schema);
+
+            $this->setResponse($schema);
+        }
     }
 
     /**
@@ -59,11 +89,21 @@ class AlbumFunctions extends FacebookAbstract
      */
     public function addPhotoToAlbum($schema)
     {
-        $this->result = json_decode($this->sendRequest($schema, $this->prepareQuery($schema)), true);
+        $response = $this->sendRequest($schema, $this->prepareQuery($schema));
 
-        $this->pagination($schema);
+        if($response == $schema['object']['error']){
 
-        $this->setResponse($schema);
+            $this->result = $response;
+
+            $this->setResponse($schema);
+        }else{
+
+            $this->result = json_decode($response, true);
+
+            $this->pagination($schema);
+
+            $this->setResponse($schema);
+        }
     }
 
     /**
@@ -73,11 +113,21 @@ class AlbumFunctions extends FacebookAbstract
      */
     public function getPhoto($schema)
     {
-        $this->result = json_decode($this->sendRequest($schema, $this->prepareQuery($schema)), true);
+        $response = $this->sendRequest($schema, $this->prepareQuery($schema));
 
-        $this->pagination($schema);
+        if($response == $schema['object']['error']){
 
-        $this->setResponse($schema);
+            $this->result = $response;
+
+            $this->setResponse($schema);
+        }else{
+
+            $this->result = json_decode($response, true);
+
+            $this->pagination($schema);
+
+            $this->setResponse($schema);
+        }
     }
 
 }

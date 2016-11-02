@@ -16,11 +16,21 @@ class UserFunctions extends FacebookAbstract
      */
     public function validateUserToken($schema)
     {
-        $this->result = json_decode($this->sendRequest($schema, $this->prepareQuery($schema)), true);
+        $response = $this->sendRequest($schema, $this->prepareQuery($schema));
 
-        $this->pagination($schema);
+        if($response == $schema['object']['error']){
 
-        $this->setResponse($schema);
+            $this->result = $response;
+
+            $this->setResponse($schema);
+        }else{
+
+            $this->result = json_decode($response, true);
+
+            $this->pagination($schema);
+
+            $this->setResponse($schema);
+        }
     }
 
     /**
@@ -30,11 +40,21 @@ class UserFunctions extends FacebookAbstract
      */
     public function extendUserToken($schema)
     {
-        $this->result = json_decode($this->sendRequest($schema, $this->prepareQuery($schema)), true);
+        $response = $this->sendRequest($schema, $this->prepareQuery($schema));
 
-        $this->pagination($schema);
+        if($response == $schema['object']['error']){
 
-        $this->setResponse($schema);
+            $this->result = $response;
+
+            $this->setResponse($schema);
+        }else{
+
+            $this->result = json_decode($response, true);
+
+            $this->pagination($schema);
+
+            $this->setResponse($schema);
+        }
     }
 
     /**
@@ -44,11 +64,21 @@ class UserFunctions extends FacebookAbstract
      */
     public function getUserAlbums($schema)
     {
-        $this->result = json_decode($this->sendRequest($schema, $this->prepareQuery($schema)), true);
+        $response = $this->sendRequest($schema, $this->prepareQuery($schema));
 
-        $this->pagination($schema);
+        if($response == $schema['object']['error']){
 
-        $this->setResponse($schema);
+            $this->result = $response;
+
+            $this->setResponse($schema);
+        }else{
+
+            $this->result = json_decode($response, true);
+
+            $this->pagination($schema);
+
+            $this->setResponse($schema);
+        }
     }
 
     /**
@@ -58,11 +88,21 @@ class UserFunctions extends FacebookAbstract
      */
     public function getUsersFriends($schema)
     {
-        $this->result = json_decode($this->sendRequest($schema, $this->prepareQuery($schema)), true);
+        $response = $this->sendRequest($schema, $this->prepareQuery($schema));
 
-        $this->pagination($schema);
+        if($response == $schema['object']['error']){
 
-        $this->setResponse($schema);
+            $this->result = $response;
+
+            $this->setResponse($schema);
+        }else{
+
+            $this->result = json_decode($response, true);
+
+            $this->pagination($schema);
+
+            $this->setResponse($schema);
+        }
     }
 
     /**
@@ -72,11 +112,21 @@ class UserFunctions extends FacebookAbstract
      */
     public function getUsersLikedPages($schema)
     {
-        $this->result = json_decode($this->sendRequest($schema, $this->prepareQuery($schema)), true);
+        $response = $this->sendRequest($schema, $this->prepareQuery($schema));
 
-        $this->pagination($schema);
+        if($response == $schema['object']['error']){
 
-        $this->setResponse($schema);
+            $this->result = $response;
+
+            $this->setResponse($schema);
+        }else{
+
+            $this->result = json_decode($response, true);
+
+            $this->pagination($schema);
+
+            $this->setResponse($schema);
+        }
     }
 
 }

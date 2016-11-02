@@ -17,11 +17,21 @@ class FeedFunctions extends FacebookAbstract
      */
     public function getUsersFeed($schema)
     {
-        $this->result = json_decode($this->sendRequest($schema, $this->prepareQuery($schema)), true);
+        $response = $this->sendRequest($schema, $this->prepareQuery($schema));
 
-        $this->pagination($schema);
+        if($response == $schema['object']['error']){
 
-        $this->setResponse($schema);
+            $this->result = $response;
+
+            $this->setResponse($schema);
+        }else{
+
+            $this->result = json_decode($response, true);
+
+            $this->pagination($schema);
+
+            $this->setResponse($schema);
+        }
     }
 
     /**
@@ -31,11 +41,21 @@ class FeedFunctions extends FacebookAbstract
      */
     public function addFeedPost($schema)
     {
-        $this->result = json_decode($this->sendRequest($schema, $this->prepareQuery($schema)), true);
+        $response = $this->sendRequest($schema, $this->prepareQuery($schema));
 
-        $this->pagination($schema);
+        if($response == $schema['object']['error']){
 
-        $this->setResponse($schema);
+            $this->result = $response;
+
+            $this->setResponse($schema);
+        }else{
+
+            $this->result = json_decode($response, true);
+
+            $this->pagination($schema);
+
+            $this->setResponse($schema);
+        }
     }
 
     /**
@@ -45,11 +65,21 @@ class FeedFunctions extends FacebookAbstract
      */
     public function deleteFeedPost($schema)
     {
-        $this->result = json_decode($this->sendRequest($schema, $this->prepareQuery($schema)), true);
+        $response = $this->sendRequest($schema, $this->prepareQuery($schema));
 
-        $this->pagination($schema);
+        if($response == $schema['object']['error']){
 
-        $this->setResponse($schema);
+            $this->result = $response;
+
+            $this->setResponse($schema);
+        }else{
+
+            $this->result = json_decode($response, true);
+
+            $this->pagination($schema);
+
+            $this->setResponse($schema);
+        }
     }
 
 }
