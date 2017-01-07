@@ -73,7 +73,7 @@ parameters:
               info: "Access token obtained from Facebook."
               required: true
             -
-              name: prodile_id
+              name: profile_id
               type: String
               info: "[opt, =me], Facebook profile id."
               required: true
