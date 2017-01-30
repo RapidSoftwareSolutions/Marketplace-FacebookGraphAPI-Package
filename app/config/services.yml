@@ -30,6 +30,7 @@ parameters:
               type: String
               info: "Access token obtained from Facebook which should be validated."
               required: true
+              generator: "http://rapidoauth.com/facebook"
           callbacks:
             -
               name: valid
@@ -46,6 +47,7 @@ parameters:
               type: String
               info: "Access token obtained from Facebook."
               required: true
+              generator: "http://rapidoauth.com/facebook"
             -
               name: app_id
               type: String
@@ -72,6 +74,7 @@ parameters:
               type: String
               info: "Access token obtained from Facebook."
               required: true
+              generator: "http://rapidoauth.com/facebook"
             -
               name: profile_id
               type: String
@@ -93,6 +96,7 @@ parameters:
               type: String
               info: "Access token obtained from Facebook."
               required: true
+              generator: "http://rapidoauth.com/facebook"
             -
               name: user_id
               type: String
@@ -114,6 +118,7 @@ parameters:
               type: String
               info: "Access token obtained from Facebook."
               required: true
+              generator: "http://rapidoauth.com/facebook"
             -
               name: user_id
               type: String
@@ -135,6 +140,7 @@ parameters:
               type: String
               info: "Access token obtained from Facebook."
               required: true
+              generator: "http://rapidoauth.com/facebook"
           callbacks:
             -
               name: error
@@ -151,6 +157,7 @@ parameters:
               type: String
               info: "Access token obtained from Facebook."
               required: true
+              generator: "http://rapidoauth.com/facebook"
             -
               name: profile_id
               type: String
@@ -172,6 +179,7 @@ parameters:
               type: String
               info: "Access token obtained from Facebook."
               required: true
+              generator: "http://rapidoauth.com/facebook"
             -
               name: profile_id
               type: String
@@ -193,6 +201,7 @@ parameters:
               type: String
               info: "Access token obtained from Facebook."
               required: true
+              generator: "http://rapidoauth.com/facebook"
             -
               name: object_id
               type: String
@@ -214,6 +223,7 @@ parameters:
               type: String
               info: "Access token obtained from Facebook."
               required: true
+              generator: "http://rapidoauth.com/facebook"
             -
               name: object_id
               type: String
@@ -235,6 +245,7 @@ parameters:
               type: String
               info: "Access token obtained from Facebook."
               required: true
+              generator: "http://rapidoauth.com/facebook"
             -
               name: object_id
               type: String
@@ -256,6 +267,7 @@ parameters:
               type: String
               info: "Access token obtained from Facebook."
               required: true
+              generator: "http://rapidoauth.com/facebook"
             -
               name: user_id
               type: String
@@ -277,6 +289,7 @@ parameters:
               type: String
               info: "Access token obtained from Facebook."
               required: true
+              generator: "http://rapidoauth.com/facebook"
             -
               name: message
               type: String
@@ -323,6 +336,7 @@ parameters:
               type: String
               info: "Access token obtained from Facebook."
               required: true
+              generator: "http://rapidoauth.com/facebook"
             -
               name: post_id
               type: String
@@ -344,6 +358,7 @@ parameters:
               type: String
               info: "Access token obtained from Facebook."
               required: true
+              generator: "http://rapidoauth.com/facebook"
             -
               name: object_id
               type: String
@@ -365,6 +380,7 @@ parameters:
               type: String
               info: "Access token obtained from Facebook."
               required: true
+              generator: "http://rapidoauth.com/facebook"
             -
               name: object_id
               type: String
@@ -401,6 +417,7 @@ parameters:
               type: String
               info: "Access token obtained from Facebook."
               required: true
+              generator: "http://rapidoauth.com/facebook"
             -
               name: comment_id
               type: String
@@ -432,6 +449,7 @@ parameters:
               type: String
               info: "Access token obtained from Facebook."
               required: true
+              generator: "http://rapidoauth.com/facebook"
             -
               name: comment_id
               type: String
@@ -453,6 +471,7 @@ parameters:
               type: String
               info: "Access token obtained from Facebook."
               required: true
+              generator: "http://rapidoauth.com/facebook"
             -
               name: album_id
               type: String
@@ -474,6 +493,7 @@ parameters:
               type: String
               info: "Access token obtained from Facebook."
               required: true
+              generator: "http://rapidoauth.com/facebook"
             -
               name: profile_id
               type: String
@@ -520,6 +540,7 @@ parameters:
               type: String
               info: "Access token obtained from Facebook."
               required: true
+              generator: "http://rapidoauth.com/facebook"
             -
               name: album_id
               type: String
@@ -541,6 +562,7 @@ parameters:
               type: String
               info: "Access token obtained from Facebook."
               required: true
+              generator: "http://rapidoauth.com/facebook"
             -
               name: album_id
               type: String
@@ -582,6 +604,7 @@ parameters:
               type: String
               info: "Access token obtained from Facebook."
               required: true
+              generator: "http://rapidoauth.com/facebook"
             -
               name: photo_id
               type: String
