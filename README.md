@@ -1,3 +1,5 @@
+[![](https://scdn.rapidapi.com/RapidAPI_banner.png)](https://rapidapi.com/package/FacebookGraphAPI/functions?utm_source=RapidAPIGitHub_FacebookGraphFunctions&utm_medium=button&utm_content=RapidAPI_GitHub)
+
 # FacebookGraphAPI Package
 This is the main package to interact with Facebook users.
 * Domain: facebook.com
