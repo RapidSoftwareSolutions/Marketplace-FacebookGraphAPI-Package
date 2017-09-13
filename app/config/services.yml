@@ -587,7 +587,7 @@ parameters:
               name: no_story
               type: Select
               options:
-                - true
+                - "true"
               info: "If set to true, this will suppress the feed story that is automatically generated on a person's profile when they upload a photo using your app."
               required: false
           callbacks:
