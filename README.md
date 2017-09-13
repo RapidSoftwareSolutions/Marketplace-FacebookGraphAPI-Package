@@ -2,7 +2,7 @@
 
 # FacebookGraphAPI Package
 This is the main package to interact with Facebook users.
-* Domain: [facebook.com](https://facebook.comm)
+* Domain: [facebook.com](https://facebook.com)
 * Credentials: access_token
 
 ## How to get credentials: 
