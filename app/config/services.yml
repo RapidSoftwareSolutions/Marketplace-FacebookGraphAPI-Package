@@ -307,7 +307,7 @@ parameters:
               required: false
             -
               name: tags
-              type: String
+              type: List
               info: "Comma-separated list of user IDs of people tagged in this post. You cannot specify this field without also specifying a place."
               required: false
             -
@@ -585,7 +585,10 @@ parameters:
               required: false
             -
               name: no_story
-              type: String
+              type: Select
+              options:
+                - true
+                - false
               info: "If set to true, this will suppress the feed story that is automatically generated on a person's profile when they upload a photo using your app."
               required: false
           callbacks:
