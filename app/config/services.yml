@@ -311,9 +311,9 @@ parameters:
               info: "List of user IDs of people tagged in this post. You cannot specify this field without also specifying a place."
               required: false
               structure:
-                name: type
+                name: tagsName
                 type: String
-                info: Tags for post
+                info: Tag
             -
               name: privacy
               type: String
@@ -393,7 +393,7 @@ parameters:
             -
               name: message
               type: String
-              info: "Optimal: The comment text"
+              info: "The comment text"
               required: false
             -
               name: attachment_id
