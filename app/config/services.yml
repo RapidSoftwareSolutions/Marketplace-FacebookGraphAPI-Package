@@ -389,7 +389,7 @@ parameters:
             -
               name: message
               type: String
-              info: "Optimal: The comment text"
+              info: "The comment text"
               required: false
             -
               name: attachment_id
@@ -585,7 +585,9 @@ parameters:
               required: false
             -
               name: no_story
-              type: String
+              type: Select
+              options:
+                - true
               info: "If set to true, this will suppress the feed story that is automatically generated on a person's profile when they upload a photo using your app."
               required: false
           callbacks:
