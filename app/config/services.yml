@@ -308,8 +308,12 @@ parameters:
             -
               name: tags
               type: List
-              info: "Comma-separated list of user IDs of people tagged in this post. You cannot specify this field without also specifying a place."
+              info: "List of user IDs of people tagged in this post. You cannot specify this field without also specifying a place."
               required: false
+              structure:
+                name: type
+                type: String
+                info: Tags for post
             -
               name: privacy
               type: String
